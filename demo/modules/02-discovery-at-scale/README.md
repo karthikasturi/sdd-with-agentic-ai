@@ -19,9 +19,12 @@ it's the one with a full, real discovery record to check against
 `../../../brownfield-project/assignment-pool.md` — the specific files will differ, the
 questions won't.
 
-**Before Step 1**: confirm your MCP connection to GitHub is actually live —
-`../../mcp-setup.md` has setup for both Copilot and Claude Code plus a verification
-step. Step 3 below depends on it working, not just being installed.
+**Before Step 1**: confirm your MCP connections are actually live, Atlassian
+(Jira + Confluence, primary) and GitHub (secondary, cross-reference) —
+`../../mcp-setup.md` has setup for both, for both Copilot and Claude Code, plus a
+verification step for each. Step 3 below depends on Atlassian specifically working, not
+just being installed — and on you naming your team's exact Jira project key in every
+query, not a vague "search Jira."
 
 ## Hands-on
 
@@ -63,19 +66,24 @@ closing section names this directly: nothing tells you in advance which question
 
 ### Step 3 — Search the issue tracker for precedent before scoping anything
 
-Using your MCP-connected GitHub tool (`../../mcp-setup.md`, verified before this step —
-not the browser, not memory), search `device-opc-ua` and `edgex-go`'s real issues (open
-or closed) for anything relevant to the kind of change you're about to make — not by
-browsing recent issues, by searching for your specific concern.
+Using your MCP-connected **Atlassian** tool (`../../mcp-setup.md`, verified before this
+step — not the browser, not memory), search **your team's Jira project** (name the exact
+project key — see "Be precise about project/space" in `mcp-setup.md`) for your assigned
+pair's defect ticket and anything else labeled with your `pair-N` tag. Then, optionally,
+cross-reference the original upstream report on GitHub for the full history behind it —
+your Jira ticket deliberately only has the symptom, the way a real bug report usually
+does; the deeper root-cause story, if there is one, lives in the original issue thread.
 
-**Checkpoint**: compare against `discovery-log.md` Q5 —
+**Checkpoint** (Pair 1's example — yours will cite different tickets/issues):
+`discovery-log.md` Q5 cross-references
 [`edgex-go#1187`](https://github.com/edgexfoundry/edgex-go/issues/1187) (a 2019
 performance regression on the exact notification-creation path a later spec's success
 criterion depends on) and
 [`device-opc-ua#53`](https://github.com/edgexfoundry/device-opc-ua/issues/53) (a 2024
-OOM report on the exact service a later feature adds more per-reading work to). Both
-closed, both old-ish, neither a blocker — but both real precedent a spec written without
-this step would have had no way to know about.
+OOM report on the exact service a later feature adds more per-reading work to) — the
+same defect your Jira ticket SDDTR-2 describes, symptom-only. Both closed, both old-ish,
+neither a blocker — but both real precedent a spec written without this step would have
+had no way to know about.
 
 ### Step 4 — Produce your one-page service/dependency map
 
