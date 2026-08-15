@@ -2,3 +2,4 @@ temp/
 *.tmp
 .~lock.*
 brownfield-project/
+course-outline/course-outline-reference.md
