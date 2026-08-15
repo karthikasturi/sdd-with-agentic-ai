@@ -13,6 +13,12 @@ curated here), edgex-ui-go (Angular), OPC UA .NET Standard (C#). Large enough th
 knowing which few questions to ask, and where a given question is actually likely to be
 answered quickly versus needing real digging.
 
+Steps 1–3 below use Pair 1 (OPC UA Threshold Alerting) as the walking example, since
+it's the one with a full, real discovery record to check against
+(`discovery-log.md`). Run the same steps against **your own team's assigned pair** from
+`../../../brownfield-project/assignment-pool.md` — the specific files will differ, the
+questions won't.
+
 ## Hands-on
 
 ### Step 1 — Ask your agent what already exists, before proposing anything new
@@ -67,6 +73,17 @@ OOM report on the exact service a later feature adds more per-reading work to). 
 closed, both old-ish, neither a blocker — but both real precedent a spec written without
 this step would have had no way to know about.
 
+### Step 4 — Produce your one-page service/dependency map
+
+Using what Steps 1–3 turned up, fill in `service-map-template.md` for your team's
+assignment — one page, the areas your pair actually touches, not the whole platform.
+Include the defect you pulled in and its *real* root cause, not just its symptom.
+
+**Checkpoint**: compare shape (not content — yours covers different services) against
+`service-map-example.md`, the same template filled for Pair 1 from this module's own
+discovery record. Keep your map — Module 3 references it directly when you write your
+constitution.
+
 ## Demo talk track (5–6 minutes)
 
 **Live vs. pre-built**: Steps 1–2 are reasonable to run genuinely live if you have time
@@ -99,3 +116,9 @@ might not surface them from a differently-worded query.
    written without five minutes of searching the tracker has no way to know they
    happened — and 'this exact service already had an OOM report on exactly this kind of
    workload' is not a fact you want to discover after implementation."*
+
+5. Open `service-map-example.md` — one page, three services, one real defect with its
+   real (not filed-against) root cause identified. "This is the entire output of this
+   module. Not a document about the codebase — a map of exactly the corner of it your
+   team is about to touch, and nothing else. Module 3 starts from this, not from a blank
+   page."
