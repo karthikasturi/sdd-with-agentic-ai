@@ -18,8 +18,10 @@
 
 - CRITICAL-only for v1, matching the severity scope this feature already established.
 - No paging or external notification integration — this repeats
-  `specs/001-opcua-threshold-alerting/spec.md`'s existing Assumptions section verbatim
-  on purpose: *"Paging/external notification channels (email, SMS, on-call tooling) are
+  `../../../../brownfield-project/specs/001-opcua-threshold-alerting/spec.md`'s existing
+  Assumptions section verbatim on purpose (note the extra `../` — this file is nested one
+  level deeper, inside `escalation-antipattern/`, than the module READMEs that use
+  `../../../`): *"Paging/external notification channels (email, SMS, on-call tooling) are
   out of scope — `support-notifications`'s existing `Subscription`/channel mechanism
   already covers that concern if/when it's needed, and is not modified by this
   feature."* Escalation changes a Notification's status; it does not, by itself, page
