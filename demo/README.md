@@ -1,39 +1,50 @@
-# Spec-Driven Development Package — Demo + Actual Training
+# Spec-Driven Development Package — Day 1 Ready
 
-**Status: rebuild in progress.** This package is being rebuilt against a real brownfield
-reference base (`../brownfield-project/`) instead of the original from-scratch Python toy.
-See `legacy-python-poc/SUPERSEDED.md` for what changed and why.
+**Day 1 (Modules 1–3) is complete and real.** Days 2–3 (Modules 4–8) are the next pass —
+see `legacy-python-poc/SUPERSEDED.md` for the original build this replaces, and the
+plan history for what's deferred and why.
 
-## What will live here (per the approved rebuild plan)
+## Structure
 
 ```
 demo/
-  README.md                    this file — full package overview, rewritten last
-  review-trail.html            interactive walkthrough, rebuilt against the new modules
+  README.md                    this file
+  tool-reference.md            GitHub Copilot ↔ Claude Code command mapping (Spec Kit + OpenSpec)
   modules/
-    01-vibe-coding-vs-spec-driven/
-    02-discovery-at-scale/            NEW — not in the original 7
-    03-governance-and-clarified-spec/
-    04-plan-and-tasks/
-    05-quality-gates/
-    06-review-and-maintain/
-    07-multi-agent-delegation/
-    08-anti-patterns/
-  legacy-python-poc/            the original version, archived intact — see SUPERSEDED.md
+    01-vibe-coding-vs-spec-driven/   team formation, both frameworks scaffolded, vibe-coding exhibit
+    02-discovery-at-scale/           MCP-style discovery, service/dependency map
+    03-governance-and-clarified-spec/  constitution + two specs (feature + defect) + clarify
+    04-08/                        not yet built — Day 2/3
+  legacy-python-poc/            the original single-feature Python version, archived
 ```
 
-The reference project itself now lives in the separate `brownfield-project/` repo
-(EdgeX Foundry [Go] + edgex-ui-go [Angular] + OPC UA .NET Standard [C#]), not inside
-`demo/`, since it's meant to read like a real product's source, not course collateral.
+The reference codebase lives in the separate `../brownfield-project/` repo (EdgeX
+Foundry [Go] + edgex-ui-go [Angular] + OPC UA .NET Standard [C#]) — real, currently
+maintained open source, not synthetic. `../brownfield-project/assignment-pool.md` has
+the 6 real feature+defect pairs teams draw from starting Module 1; Pair 1 (OPC UA
+Threshold Alerting + `device-opc-ua#53`) is fully worked end to end and doubles as the
+instructor's reference throughout.
 
-## Build order
+## How Day 1 actually flows
 
-1. Reference implementation in `brownfield-project/` (constitution, spec, plan, tasks,
-   checklist, analyze, one implemented user story) — **in progress**.
-2. The 8 module guides above, each checkpointed against artifacts from step 1.
-3. Teaching exhibits (vibe-coding exhibit, flawed-change review, escalation anti-pattern
-   trio, delegation transcript).
-4. `review-trail.html`, last, once the content above is stable.
+1. **Module 1**: teams form, claim a pair from the assignment pool, scaffold both Spec
+   Kit and OpenSpec side by side, then see ad hoc prompting fail on a self-contained
+   exhibit (Go, real, runs).
+2. **Module 2**: teams orient in their pair's actual codebase area — real documentation
+   quality varies (well-documented core, undocumented internals), real GitHub issue
+   history for precedent — and produce a one-page service/dependency map.
+3. **Module 3**: teams write a constitution from that map, spec *and clarify* both
+   halves of their pair (feature + defect), then choose one to carry forward. The other
+   is set aside for Module 8 and the Capstone.
 
-Full package overview (the equivalent of the original `demo/README.md`) gets rewritten
-once modules 1–8 exist.
+Every checkpoint in Modules 1–3 points at something real: a working Go implementation
+with real tests, real git history showing a corrected mistake, real GitHub issues, a
+real OpenSpec scaffold actually run during prep — not staged output.
+
+## Status
+
+- [x] Modules 1–3, assignment pool, Tool Reference handout, defect-side worked spec.
+- [ ] Modules 4–8 guides.
+- [ ] Teaching exhibits for Modules 5–7 (flawed-change, escalation-antipattern, delegation-transcript).
+- [ ] `review-trail.html` rebuild.
+- [ ] Angular acknowledge-button code (`repos/edgex-ui-go`, in progress, uncommitted) — Module 5-era, not blocking Day 1.
