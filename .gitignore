@@ -1,0 +1,4 @@
+temp/
+*.tmp
+.~lock.*
+brownfield-project/
