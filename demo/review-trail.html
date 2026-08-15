@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Review Trail — Spec-Driven Development Course Map</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --ink: #16181d;
+    --ink-dim: #565c66;
+    --border: #dde1e7;
+    --accent: #2f6fed;
+    --accent-ink: #ffffff;
+    --code-bg: #f0f2f6;
+    --rail-bg: #ffffff;
+    --rail-active: #eaf1ff;
+    --ok: #1a7f4e;
+    --warn: #b5651d;
+    --shadow: 0 1px 3px rgba(20,24,32,0.08), 0 8px 24px rgba(20,24,32,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161b;
+      --panel: #1c1f26;
+      --ink: #eef0f4;
+      --ink-dim: #9aa2b1;
+      --border: #2c313b;
+      --accent: #6ea2ff;
+      --accent-ink: #0c1220;
+      --code-bg: #11141a;
+      --rail-bg: #1a1d24;
+      --rail-active: #223252;
+      --ok: #4fd696;
+      --warn: #e0a563;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 12px 28px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161b; --panel: #1c1f26; --ink: #eef0f4; --ink-dim: #9aa2b1;
+    --border: #2c313b; --accent: #6ea2ff; --accent-ink: #0c1220; --code-bg: #11141a;
+    --rail-bg: #1a1d24; --rail-active: #223252; --ok: #4fd696; --warn: #e0a563;
+    --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 12px 28px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  #rail {
+    width: 280px;
+    min-width: 280px;
+    background: var(--rail-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 16px 0;
+  }
+  #rail h1 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-dim);
+    padding: 0 18px 10px;
+    margin: 0;
+  }
+  .rail-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--ink);
+    padding: 10px 18px;
+    cursor: pointer;
+    font: inherit;
+    border-left: 3px solid transparent;
+  }
+  .rail-item:hover { background: var(--rail-active); }
+  .rail-item.active {
+    background: var(--rail-active);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  .rail-item .day-tag {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-dim);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  #topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  #counterText { color: var(--ink-dim); font-size: 13px; }
+  .nav-btn {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: none;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .nav-btn:disabled { opacity: 0.35; cursor: default; }
+  .nav-btn.secondary { background: var(--code-bg); color: var(--ink); }
+  #stage {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px 60px;
+  }
+  .slide { max-width: 880px; margin: 0 auto; }
+  .slide h2 {
+    font-size: 26px;
+    margin: 0 0 4px;
+  }
+  .slide .subtitle { color: var(--ink-dim); margin: 0 0 28px; font-size: 15px; }
+  .slide h3 { font-size: 16px; margin: 28px 0 10px; }
+  .slide p { color: var(--ink); }
+  .slide ul { padding-left: 20px; }
+  .slide li { margin-bottom: 8px; }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    box-shadow: var(--shadow);
+  }
+  .card.finding { border-left: 4px solid var(--warn); }
+  .card.ok { border-left: 4px solid var(--ok); }
+  code, pre {
+    background: var(--code-bg);
+    border-radius: 6px;
+    font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  code { padding: 2px 6px; }
+  pre { padding: 12px 14px; overflow-x: auto; margin: 10px 0; }
+  .quote {
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding: 4px 16px;
+    margin: 16px 0;
+    color: var(--ink-dim);
+  }
+  table { border-collapse: collapse; width: 100%; margin: 14px 0; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 13.5px; }
+  th { background: var(--code-bg); }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--rail-active);
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  kbd {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<nav id="rail"><h1>Course Map</h1></nav>
+
+<div id="main">
+  <div id="topbar">
+    <div>
+      <button class="nav-btn secondary" id="prevBtn">&larr; Prev</button>
+      <button class="nav-btn" id="nextBtn">Next &rarr;</button>
+    </div>
+    <span id="counterText"></span>
+  </div>
+  <div id="stage"></div>
+</div>
+
+<script>
+const slides = [
+{
+  day: "Reference", title: "Command Reference",
+  html: `
+    <h2>The Commands</h2>
+    <p class="subtitle">Same lifecycle, two tools, two spec frameworks. Every command below is real —
+    confirmed by actually running <code>specify init</code> and <code>openspec init</code> during this
+    course's own prep, not guessed at.</p>
+    <h3>GitHub Spec Kit CLI</h3>
+    <table>
+      <tr><th>Step</th><th>Claude Code</th><th>GitHub Copilot</th></tr>
+      <tr><td>Constitution</td><td><code>/speckit-constitution</code></td><td><code>/speckit.constitution</code></td></tr>
+      <tr><td>Specify</td><td><code>/speckit-specify</code></td><td><code>/speckit.specify</code></td></tr>
+      <tr><td>Clarify</td><td><code>/speckit-clarify</code></td><td><code>/speckit.clarify</code></td></tr>
+      <tr><td>Plan</td><td><code>/speckit-plan</code></td><td><code>/speckit.plan</code></td></tr>
+      <tr><td>Tasks</td><td><code>/speckit-tasks</code></td><td><code>/speckit.tasks</code></td></tr>
+      <tr><td>Checklist</td><td><code>/speckit-checklist</code></td><td><code>/speckit.checklist</code></td></tr>
+      <tr><td>Analyze</td><td><code>/speckit-analyze</code></td><td><code>/speckit.analyze</code></td></tr>
+      <tr><td>Implement</td><td><code>/speckit-implement</code></td><td><code>/speckit.implement</code></td></tr>
+    </table>
+    <h3>OpenSpec CLI</h3>
+    <table>
+      <tr><th>Step</th><th>Claude Code</th><th>GitHub Copilot</th></tr>
+      <tr><td>Propose</td><td><code>/opsx:propose</code></td><td><code>/opsx-propose</code></td></tr>
+      <tr><td>Explore</td><td><code>/opsx:explore</code></td><td><code>/opsx-explore</code></td></tr>
+      <tr><td>Apply</td><td><code>/opsx:apply</code></td><td><code>/opsx-apply</code></td></tr>
+      <tr><td>Archive</td><td><code>/opsx:archive</code></td><td><code>/opsx-archive</code></td></tr>
+    </table>
+    <p>Full mapping: <code>demo/tool-reference.md</code>. Full comparison of the two frameworks:
+    <code>SDD-Framework-Comparison_Spec-Kit-vs-OpenSpec.docx</code>.</p>
+  `
+},
+{
+  day: "Day 1 · Module 1", title: "From Vibe Coding to Spec-Driven Development",
+  html: `
+    <h2>From Vibe Coding to Spec-Driven Development</h2>
+    <p class="subtitle">Failure modes of ad hoc prompting · SDD principles · the full lifecycle as a map</p>
+    <div class="card">
+      <span class="tag">Real, unedited</span>
+      <p>Two prompts fed cold to an agent, no spec, no constitution, no repo context —
+      <code>vibe-coding-exhibit/PROMPT.md</code> and <code>PROMPT-ADVANCED.md</code>. Both outputs
+      genuinely build and run.</p>
+      <p><strong>Exhibit A</strong> (naive): a hardcoded global threshold, an uninvited paging
+      integration with a swallowed error, and an acknowledge endpoint that returns <code>200</code>
+      and silently never acknowledges anything — <code>for _, alert := range alerts { alert.Acknowledged
+      = true }</code> mutates a loop copy, not the underlying slice. Verified live.</p>
+      <p><strong>Exhibit B</strong> (thoughtful prompt): real per-type thresholds, real validation, a
+      correctly idempotent-<em>rejecting</em> acknowledge endpoint. Still floods three separate alerts
+      from three consecutive critical readings — nobody asked what happens when the condition keeps
+      recurring.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Two gaps, two different fixes</h3>
+      <p>The recurrence gap is a <strong>Module 3</strong> problem — a clarify pass catches it. The
+      second gap — neither prompt knew this platform already ships <code>support-notifications</code>,
+      a real, running service built for exactly this — is a <strong>Module 2</strong> problem. No
+      amount of prompt detail fixes that; the agent was never pointed at what already exists.</p>
+    </div>
+    <p class="quote">"Everything from here forward is the same domain, going through that lifecycle
+    instead — at a scale a hand-picked toy example never could have shown you."</p>
+  `
+},
+{
+  day: "Day 1 · Module 2", title: "Discovery at Scale",
+  html: `
+    <h2>Discovery at Scale</h2>
+    <p class="subtitle">Understanding an existing, hierarchical, unevenly-documented codebase before writing a spec</p>
+    <div class="card ok">
+      <span class="tag">Fast</span>
+      <p><strong>Q: Does an alerting capability already exist?</strong> Yes —
+      <code>support-notifications</code>, found in minutes via official docs and a full OpenAPI spec.
+      Good documentation buys you speed.</p>
+    </div>
+    <div class="card finding">
+      <span class="tag">Slow, and misleading</span>
+      <p><strong>Q: Does the dashboard already have a notifications screen?</strong> Yes — but the
+      obvious-looking file (<code>NotificationsComponent</code>) is an empty tab-shell. The real logic
+      is a directory over, in <code>NotificationListComponent</code>. This project's own first spec
+      draft made exactly this mistake — stop reading after file one and you'd report the feature
+      doesn't exist.</p>
+    </div>
+    <div class="card finding">
+      <span class="tag">Undocumented entirely</span>
+      <p><strong>Q: Does acknowledging a notification twice get rejected?</strong> No — confirmed only
+      by reading source and the OpenAPI spec's response codes (200/400/500, no 409). Nothing in any
+      prose doc says this. The absence of a 409 response <em>is</em> the finding.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Real precedent from the issue tracker</h3>
+      <p><a href="https://github.com/edgexfoundry/edgex-go/issues/1187">edgex-go#1187</a> — a 2019
+      performance regression on the exact notification-creation path a later spec's success criterion
+      depends on. <a href="https://github.com/edgexfoundry/device-opc-ua/issues/53">device-opc-ua#53</a>
+      — a 2024 OOM report on the exact service a later feature adds more work to. Both closed, both real,
+      both found only by searching, not browsing.</p>
+    </div>
+    <p>Deliverable: a one-page service/dependency map per team —
+    <code>demo/modules/02-discovery-at-scale/service-map-template.md</code>.</p>
+  `
+},
+{
+  day: "Day 1 · Module 3", title: "Governance and a Clarified Specification",
+  html: `
+    <h2>Establishing Governance and Writing a Clarified Specification</h2>
+    <p class="subtitle">Constitution informed by discovery · specs from both a feature and a defect · clarify both</p>
+    <div class="card">
+      <h3 style="margin-top:0">Constitution Principle IV — no greenfield equivalent</h3>
+      <p><em>"Convention Conformance: new code MUST follow the target repo's own established patterns...
+      This principle has no equivalent in a greenfield project — there is no 'existing convention' to
+      conform to when the codebase doesn't exist yet."</em></p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Two specs, two shapes</h3>
+      <p>A <strong>feature spec</strong> (<code>001-opcua-threshold-alerting/spec.md</code>) describes
+      new desired behavior. A <strong>defect spec</strong>
+      (<code>defect-001-device-opc-ua-oom/spec.md</code>) has a "Problem Statement" section instead — it
+      describes correct behavior against a symptom nobody chose, and states plainly that the defect is
+      filed against one service but likely fixed in another.</p>
+    </div>
+    <table>
+      <tr><th>Clarify Q</th><th>Answer</th></tr>
+      <tr><td>Node goes silent?</td><td>MINOR "offline" alert after 60 min</td></tr>
+      <tr><td>Single vs. consecutive reading?</td><td>Critical fires immediately; warning needs 2 in a row</td></tr>
+      <tr><td>Extend existing service, or new one? <em>(no greenfield equivalent)</em></td><td>Extend <code>device-opc-ua</code> — it already owns the subscription lifecycle</td></tr>
+    </table>
+    <p>Each team picks <strong>one</strong> spec to carry forward through Module 7. The other is set
+    aside for Module 8 and the Capstone.</p>
+  `
+},
+{
+  day: "Day 2 · Module 4", title: "From Clarified Spec to Reviewable Plan",
+  html: `
+    <h2>From Clarified Spec to Reviewable Plan</h2>
+    <p class="subtitle">Plan, reviewed line by line, before any file changes — then task decomposition</p>
+    <div class="card finding">
+      <h3 style="margin-top:0">Plan Review Note — a real, corrected decision</h3>
+      <p><s>Threshold values defined as a Go map literal inside the source file</s> — cheap, but means an
+      engineer edits code and redeploys to change one number, for a system whose entire premise is that
+      non-engineers act on its output.</p>
+      <p><strong>Corrected</strong>: thresholds live on the device profile — a mechanism that already
+      existed for exactly this. Not "add a database table" (the fix an earlier, greenfield version of
+      this course used for the identical mistake) — <em>use what's already there</em>.</p>
+    </div>
+    <p class="quote">"<code>/speckit-plan</code> will happily generate a plan that hardcodes a value in
+    source without flagging it — that's not a constitution violation, it's a judgment call. Catching it
+    takes a person asking who has to act on this later."</p>
+    <div class="card ok">
+      <p><strong>Deferred, not forgotten</strong>: node-offline detection (FR-013) has no task in this
+      pass — flagged explicitly in <code>tasks.md</code>'s Deferred section, with a reason, not silently
+      dropped.</p>
+    </div>
+  `
+},
+{
+  day: "Day 2 · Module 5", title: "Quality Gates Before Implementation",
+  html: `
+    <h2>Quality Gates Before Implementation</h2>
+    <p class="subtitle">Checklist · Analyze · security/coverage gates · token &amp; cost budgeting</p>
+    <div class="card finding">
+      <h3 style="margin-top:0">Finding 1 — checklist, original pass</h3>
+      <p>Spec never said what happens when the same condition keeps recurring. Resolved: FR-015 added.
+      "Unit test suite for requirements — run against the spec, not the code."</p>
+    </div>
+    <div class="card finding">
+      <h3 style="margin-top:0">Finding 2 — added Day 2, for this module</h3>
+      <p>The constitution requires every new HTTP boundary to state its auth posture. Neither
+      <code>spec.md</code> nor <code>plan.md</code> did — the right reasoning already existed as a code
+      comment, which is not the same as it being reviewable before the code exists. Resolved: a
+      "Security &amp; Auth Path" section added to <code>plan.md</code> for real.</p>
+    </div>
+    <div class="card ok">
+      <h3 style="margin-top:0">Code coverage — measured, not asserted</h3>
+      <pre>go test ./internal/threshold/... -cover
+→ 94.3% of statements
+
+(internal/driver, the existing sibling package: 38.4%)</pre>
+    </div>
+    <p class="quote">"Budget checklist and analyze as a fixed, small cost per feature — the alternative
+    isn't zero cost, it's the same cost paid later, at a worse time, by someone with less context."</p>
+  `
+},
+{
+  day: "Day 2 · Module 6", title: "Reviewing, Validating, and Maintaining Agent Output",
+  html: `
+    <h2>Reviewing, Validating, and Maintaining Agent Output</h2>
+    <p class="subtitle">"The highest-leverage moment in the whole course"</p>
+    <div class="card finding">
+      <h3 style="margin-top:0">A candidate patch, green, and wrong</h3>
+      <p>Closes the deferred node-offline task. Ships with a test. <strong>9/9 passing</strong>,
+      including the new one.</p>
+      <pre>if time.Since(st.lastSeenAt) > 60 { ... } // 60 what?</pre>
+      <p><code>time.Since</code> returns nanoseconds. The literal <code>60</code> means 60
+      <em>nanoseconds</em>, not 60 minutes. The doc comment one line above states the correct intent;
+      the code doesn't do it. The test passes because it expects the bug's behavior — call it, check
+      immediately, assert it fired.</p>
+    </div>
+    <p class="quote">"This isn't a lazy test. It's a real assertion that passes, verifying the wrong
+    thing — because whoever wrote the test had the same mistaken mental model as whoever wrote the code.
+    No automated gate catches two artifacts sharing one author's blind spot. Only a second, independent
+    read of the actual line does."</p>
+  `
+},
+{
+  day: "Day 3 · Module 7", title: "Multi-Agent Workflows & Team Adoption",
+  html: `
+    <h2>Multi-Agent Workflows &amp; Team Adoption</h2>
+    <p class="subtitle">A real delegation, independently verified — not staged</p>
+    <div class="card">
+      <p>Go (User Story 1) built directly. Angular (User Story 3) delegated to a second, independent
+      pass with a scope boundary: given spec sections, the contract, the plan's reasoning, existing code
+      to pattern-match, and an explicit "do not touch spec/plan/tasks/constitution."</p>
+      <p><strong>Verified, not taken on faith</strong>: real <code>npm install</code> + <code>ng test</code>
+      in actual headless Chrome — <strong>5/5 passing</strong>.</p>
+    </div>
+    <div class="card finding">
+      <h3 style="margin-top:0">What the delegate didn't flag</h3>
+      <p>Three self-reported judgment calls, all reasonable. What's missing: a real TOCTOU race in the
+      client-side acknowledge guard — two staff members on a stale page could both pass the check. The
+      reasoning already existed, as a comment, in the code the delegate wrote. It was never surfaced as
+      an open risk in the summary.</p>
+    </div>
+    <p class="quote">"Delegation changes who writes the code. It doesn't change who's responsible for
+    asking what a passing test suite doesn't prove — and it doesn't automatically surface what the
+    delegate already knew but didn't say out loud."</p>
+  `
+},
+{
+  day: "Day 3 · Module 8", title: "Common Pitfalls & Anti-Patterns",
+  html: `
+    <h2>Common Pitfalls &amp; Anti-Patterns</h2>
+    <p class="subtitle">Same feature, specified two wrong ways and one corrected way — all three build clean</p>
+    <table>
+      <tr><th>Under-specified</th><th>Over-specified</th><th>Corrected</th></tr>
+      <tr>
+        <td>Arbitrary 15-min constant. Applies to every severity, not just critical. Destructively
+        overwrites <code>Severity</code>, never touches the platform's existing <code>ESCALATED</code>
+        status. No idempotency guard.</td>
+        <td>Bypasses the existing <code>ESCALATED</code> value for a new parallel table. Adds an unvetted
+        dependency. Makes an unconditional external page call — directly contradicting this project's
+        own real <code>spec.md</code>, which already rules paging out of scope.</td>
+        <td>States trigger, effect (the <em>existing</em> <code>ESCALATED</code> value), and boundary.
+        Stops there. The only real insight: read the schema before writing the requirement.</td>
+      </tr>
+    </table>
+    <p class="quote">"Not a hypothetical scope violation — a citation against a file that already exists,
+    that this exact course built, three modules ago."</p>
+  `
+},
+{
+  day: "Day 3 · Capstone", title: "Capstone Project",
+  html: `
+    <h2>Capstone Project</h2>
+    <p class="subtitle">The set-aside spec, rewritten, through the full lifecycle for the first time — less scaffolding, on purpose</p>
+    <div class="card">
+      <p>No numbered checkpoints this time. By now each team has run constitution → spec → clarify →
+      plan → tasks → checklist → analyze → implement → review once, on their carried-forward increment.
+      The Capstone runs it again, on the set-aside half, with their own judgment instead of a reference
+      file.</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Documented review trail — both increments</h3>
+      <p>Not "we ran a checklist" — the specific thing it caught and how it got fixed, the same way this
+      course's own Findings 1 and 2 are written. A review trail that only says gates were run isn't a
+      review trail.</p>
+    </div>
+    <p>Team presentation: the project's evolution from Day 1 through both increments. Peer and instructor
+    feedback. Wrap-up.</p>
+  `
+}
+];
+
+let current = 0;
+const rail = document.getElementById('rail');
+const stage = document.getElementById('stage');
+const counterText = document.getElementById('counterText');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+slides.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'rail-item';
+  btn.innerHTML = s.title + '<span class="day-tag">' + s.day + '</span>';
+  btn.addEventListener('click', () => render(i));
+  rail.appendChild(btn);
+});
+
+function render(i) {
+  current = Math.max(0, Math.min(slides.length - 1, i));
+  stage.innerHTML = '<div class="slide">' + slides[current].html + '</div>';
+  stage.scrollTop = 0;
+  [...rail.querySelectorAll('.rail-item')].forEach((el, idx) => {
+    el.classList.toggle('active', idx === current);
+  });
+  counterText.textContent = (current + 1) + ' / ' + slides.length;
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === slides.length - 1;
+}
+
+prevBtn.addEventListener('click', () => render(current - 1));
+nextBtn.addEventListener('click', () => render(current + 1));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') render(current + 1);
+  if (e.key === 'ArrowLeft') render(current - 1);
+});
+
+render(0);
+</script>
+</body>
+</html>

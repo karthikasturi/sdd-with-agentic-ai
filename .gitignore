@@ -3,3 +3,4 @@ temp/
 .~lock.*
 brownfield-project/
 course-outline/course-outline-reference.md
+.gstack/
