@@ -1,6 +1,0 @@
-__pycache__/
-*.pyc
-.pytest_cache/
-equipment_health.db
-equipment.db
-.venv/
