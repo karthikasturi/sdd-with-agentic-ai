@@ -11,6 +11,11 @@ draws from starting this module. This module's own hands-on exercise is self-con
 in `vibe-coding-exhibit/`, but Steps 1–2 below set up the real project every later
 module builds on.
 
+**Before this module**: run through `../../setup-guide.md` — toolchains, the reference
+project clone, and a smoke test — so Day 1 starts with a working environment, not a
+debugging session. Module 2 additionally needs `../../mcp-setup.md` (GitHub MCP access)
+— worth doing that one now too, even though it isn't used until then.
+
 ## Hands-on
 
 ### Step 1 — Form your team and get your assignment

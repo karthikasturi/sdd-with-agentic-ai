@@ -19,14 +19,17 @@ it's the one with a full, real discovery record to check against
 `../../../brownfield-project/assignment-pool.md` — the specific files will differ, the
 questions won't.
 
+**Before Step 1**: confirm your MCP connection to GitHub is actually live —
+`../../mcp-setup.md` has setup for both Copilot and Claude Code plus a verification
+step. Step 3 below depends on it working, not just being installed.
+
 ## Hands-on
 
 ### Step 1 — Ask your agent what already exists, before proposing anything new
 
 Point your agent at `repos/edgex-go` and `repos/edgex-ui-go` (real files, real
-directory listings — no need for anything fancier than filesystem/grep access to start;
-if your tool has an MCP connection to GitHub or a docs site, use it here too). Ask it,
-cold, without telling it the answer:
+directory listings — filesystem/grep access covers this step; Step 3 is where the MCP
+connection to GitHub actually gets used). Ask it, cold, without telling it the answer:
 
 1. Does this platform already have something that could raise/store/list alerts or
    notifications?
@@ -60,9 +63,10 @@ closing section names this directly: nothing tells you in advance which question
 
 ### Step 3 — Search the issue tracker for precedent before scoping anything
 
-Before assuming a change is safe, search `device-opc-ua` and `edgex-go`'s real GitHub
-issues (open or closed) for anything relevant to the kind of change you're about to
-make — not by browsing recent issues, by searching for your specific concern.
+Using your MCP-connected GitHub tool (`../../mcp-setup.md`, verified before this step —
+not the browser, not memory), search `device-opc-ua` and `edgex-go`'s real issues (open
+or closed) for anything relevant to the kind of change you're about to make — not by
+browsing recent issues, by searching for your specific concern.
 
 **Checkpoint**: compare against `discovery-log.md` Q5 —
 [`edgex-go#1187`](https://github.com/edgexfoundry/edgex-go/issues/1187) (a 2019

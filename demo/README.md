@@ -9,6 +9,8 @@ from git history if ever needed).
 ```
 demo/
   README.md                    this file
+  setup-guide.md                Day-0 environment setup — run this before Day 1
+  mcp-setup.md                  MCP server setup for Module 2 (Copilot + Claude Code, both configs)
   tool-reference.md            GitHub Copilot ↔ Claude Code command mapping (Spec Kit + OpenSpec)
   modules/
     01-vibe-coding-vs-spec-driven/             team formation, both frameworks scaffolded, vibe-coding exhibit
@@ -66,7 +68,15 @@ OpenSpec scaffold actually run during prep — not staged output.
       escalation-antipattern exhibit — all real, all verified to compile/run.
 - [x] Full reference implementation: Go (`device-opc-ua`) and Angular (`edgex-ui-go`),
       both tested and committed on course branches.
-- [ ] `review-trail.html` rebuild — optional polish, not required for delivery.
+- [x] `review-trail.html` rebuild — 10-slide walkthrough (JS/data verified; visual
+      render unverifiable in this sandbox, no browser available).
+- [x] `setup-guide.md` and `mcp-setup.md` — Day-0 environment and MCP setup.
 - [ ] Real GitHub forks for the submodules (currently local branches only) — needed only
       if this goes out to participants who need to push their own commits; not required
       for instructor-led delivery from this machine.
+- [ ] .NET SDK / OPC UA reference server (`opc-ua-dotnet`) — the one toolchain piece
+      never actually built or run during prep (no .NET SDK in this environment); flagged
+      explicitly in `setup-guide.md`, not silently assumed to work.
+- [ ] Presentation slide decks — not revisited since the brownfield pivot; likely still
+      describe the old single-feature premise. Worth a pass before Day 1 if slides are
+      shown alongside these materials.
