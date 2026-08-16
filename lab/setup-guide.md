@@ -5,6 +5,10 @@ toolchain installs. Everything below was verified against this course's actual c
 repos during prep (versions shown are what was actually tested, not just what's
 generally recommended), except where marked otherwise.
 
+New to EdgeX Foundry, OPC UA, or Modbus? Read
+[`edgex-primer.md`](edgex-primer.md) first — the architecture and protocol vocabulary
+below assumes it.
+
 ## 1. Core tools
 
 | Tool | Version tested | Check |
@@ -16,6 +20,7 @@ generally recommended), except where marked otherwise.
 | `uv` / `uvx` | 0.11+ (tested: 0.11.30) — installs the GitHub Spec Kit CLI | `uv --version` |
 | .NET SDK | 8.0+ | `dotnet --version` |
 | Google Chrome (or Chromium) | any recent version — needed to run `edgex-ui-go`'s real Angular tests headlessly | `google-chrome --version` |
+| `golangci-lint` | v2 (installed via `go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest`) — Module 5's static-analysis gate (CHK018) | `golangci-lint --version` |
 
 **Honest gap**: everything above except the .NET SDK row was actually installed and
 exercised for real during this course's prep — Go builds/tests, Angular

@@ -47,6 +47,23 @@ This mirrors how `checklist.md` and `analyze-report.md`'s real Findings 1 and 2 
 got fixed. A review trail that only says gates were run, without saying what they
 found, isn't a review trail.
 
+## Publish the review trail to Confluence
+
+A review trail sitting only as a file in your repo is exactly the kind of documentation
+Module 2 taught you to distrust by default — recall Q3/Q4 in `discovery-log.md`: things
+that exist but aren't where anyone would think to look aren't meaningfully documented.
+Close that loop on your own team's work. Using your **Atlassian MCP** connection (the
+same one, write side, Module 4 used for the Jira sync), ask your agent to publish this
+document as a new Confluence page under your team's space — a child page of whatever
+your team's Module 2 architecture notes landed under, if you made one, so a teammate
+starting from Confluence can actually find it via normal navigation, not just because
+they already knew to look in the repo.
+
+**Checkpoint**: open the page in a browser, not just the agent's confirmation. Does it
+read like `confluence-content.md`'s real pages (concrete, specific, sourced) or like a
+generic status update? The same bar Module 5 set for Findings — specific beats generic
+— applies here too.
+
 ## Team presentation
 
 Present your project's evolution from Day 1 through both increments — not just the

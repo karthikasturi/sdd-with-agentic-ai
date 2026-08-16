@@ -58,7 +58,9 @@ scope violation.
    run and show, not a claim.
 6. **Documented review trail** covering **both** increments (template in
    `hands-on.md`) — specific findings and how they got fixed, referencing Modules 2–6 by
-   name, not "we ran the gates."
+   name, not "we ran the gates." **Published to Confluence** (not just committed to the
+   repo) via the team's Atlassian MCP connection — see `hands-on.md`'s "Publish the
+   review trail to Confluence" section.
 7. **Team presentation** — the project's evolution from Day 1 through both increments;
    see `hands-on.md` for discussion points to prepare.
 

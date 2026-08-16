@@ -41,14 +41,33 @@ Add at least one checklist item that specifically checks a security, compliance,
 code-coverage concern — not just functional correctness.
 
 **Checkpoint**: `checklist.md`'s "Security, Compliance & Code Coverage" section (added
-Day 2, after the original pass) has two: CHK016 asks whether the plan states its new
+Day 2, after the original pass) has four. CHK016 asks whether the plan states its new
 HTTP boundaries' auth posture — it originally **failed**, for real; see Finding 2 and
 the "Security & Auth Path" section it caused to be added to `plan.md`. CHK017 asks
 whether new code's test coverage holds up against this repo's existing baseline —
 verified with a real command, not asserted: `go test ./internal/threshold/... -cover`
 returns 94.3%, against the pre-existing `internal/driver` package's 38.4% in the same
-repo. Run the same command yourself against your own new code before checking this item
-off — a coverage claim nobody ran is not a checked item.
+repo. CHK018 asks whether new/changed code passes the *repository's own* configured
+static-analysis gate — verified: `golangci-lint run ./internal/threshold/...
+./internal/driver/...` (this repo's real `.golangci.yml`, `gosec` enabled), 0 issues.
+CHK019 is the honest counterpart: when a repo's own gate for a different toolchain
+doesn't actually run — `edgex-ui-go`'s `npm run lint` fails outright, no ESLint
+schematic configured upstream — that gets written down, not silently skipped.
+
+Run the equivalent commands yourself against your own new code before checking any of
+these off — for Go code, whichever repo your pair touches:
+```
+cd ../../../brownfield-project/repos/<your-repo>
+go test ./... -cover
+golangci-lint run ./...   # install: go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+```
+If your repo has its own `.golangci.yml` or `.sonarcloud.properties`, use its actual
+configured rules, not a generic default — the point of CHK018 is "passes *this
+repository's* bar," the same brownfield-conformance principle Module 4's plan-review
+step applies to architecture decisions. If your repo's linter isn't configured at all
+(check for `.golangci.yml`; Angular repos need `@angular-eslint/schematics` installed
+before `ng lint` works), that's a CHK019, not a blocker — write it down and move on. A
+coverage or lint claim nobody actually ran is not a checked item.
 
 ### Step 4 — Implement one task end-to-end, only after every gate clears
 

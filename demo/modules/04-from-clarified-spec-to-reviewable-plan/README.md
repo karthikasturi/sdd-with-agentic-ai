@@ -31,3 +31,10 @@ brownfield-shaped, not in "a" correction a live run might or might not surface.
    Deferred section. *"One real requirement, explicitly not built, explicitly written
    down why. Compare that to a task that just quietly never got created — from a task
    list alone, you can't always tell the difference. This can."*
+
+4. Close on Step 4 — live if your Atlassian MCP connection is up: ask the agent to
+   create one real Jira sub-task from `tasks.md`, then open the story in a browser to
+   show it landed. *"Everything so far lived in files in your repo. The tracker your
+   team actually works from doesn't know any of it happened until something writes it
+   back — this is that write, and we check it the same way we'd check any agent claim:
+   not by trusting the summary, by opening the ticket."*

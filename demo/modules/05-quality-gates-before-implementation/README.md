@@ -29,3 +29,13 @@ This file is the presenter-facing talk track only.
    `internal/driver`'s 38.4% in the same terminal. *"Not 'we wrote tests' — a number,
    next to this exact repo's own existing bar, checked the same way a reviewer would
    check it."*
+
+5. Run `golangci-lint run ./internal/threshold/... ./internal/driver/...` live in the
+   same terminal — 0 issues, `gosec` (security linter) included because it's already
+   enabled in this repo's own `.golangci.yml`, not a rule this course invented. Then
+   open CHK019 in `checklist.md` and run `npm run lint` in `edgex-ui-go/web` to show it
+   fail for real — *"the Angular side of this exact feature shipped without a working
+   lint gate, because the repo's own gate was never configured. We don't paper over
+   that with a fake pass — we write it down. That's what CHK019 is."* If your org runs
+   SonarQube/SonarCloud, `edgex-go`'s real `.sonarcloud.properties` is worth pointing at
+   here too — same gate role, different tool, whichever your assigned repo actually has.

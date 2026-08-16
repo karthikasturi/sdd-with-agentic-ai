@@ -18,6 +18,9 @@ three days flow, module by module, and what's real vs. what's still in progress.
 
 ## Before Day 1
 
+- [`lab/edgex-primer.md`](lab/edgex-primer.md) — never touched EdgeX Foundry, OPC UA, or
+  Modbus before? Read this first — real architecture, real protocol vocabulary, framed
+  around a fictional brownfield adopter so it's concrete, not abstract.
 - [`lab/setup-guide.md`](lab/setup-guide.md) — toolchains, the reference project
   clone, a smoke test. Run this first.
 - [`lab/mcp-setup.md`](lab/mcp-setup.md) — MCP server setup (GitHub Copilot primary,

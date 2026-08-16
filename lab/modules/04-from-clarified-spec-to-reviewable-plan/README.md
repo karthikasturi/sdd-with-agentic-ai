@@ -57,5 +57,22 @@ flagged with a reason, not silently dropped. A deferred task and a forgotten tas
 identical in a task list unless the deferral is written down — that's the difference
 this section exists to preserve.
 
+### Step 4 — Sync your tasks back to Jira
+
+`tasks.md` living only in your repo is exactly the "spec drift" risk Module 6 names —
+your Jira story (the one you claimed in Module 1) has no visibility into what got
+decomposed from it unless something puts it there. Using your **Atlassian MCP**
+connection (write access, same connection Module 2 used to search), ask your agent, in
+your own words, something like: *"Create a Jira sub-task under
+`[your project key]-[your story number]` for each of these three tasks: T0XX, T0XX,
+T0XX — title and description from tasks.md, same IDs."* Pick at least 3 tasks, not all
+of them — this is a real exercise in agent-driven write access, not clerical data entry.
+
+**Checkpoint**: open the story in Jira (browser, not the agent) and confirm the
+sub-tasks are actually there, titled and described the way you asked — not a summary
+the agent gave you claiming it worked. This is the same "verify, don't trust the
+agent's own report" discipline `delegation-transcript.md` uses in Module 7, one module
+early, on a smaller, lower-stakes action.
+
 See `../../../demo/modules/04-from-clarified-spec-to-reviewable-plan/README.md` for
 this module's presenter/demo talk track — not needed to complete the hands-on above.

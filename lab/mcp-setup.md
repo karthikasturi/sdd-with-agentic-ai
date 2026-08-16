@@ -7,7 +7,13 @@ documentation and code" means in the course objectives. Two servers matter here:
 - **Atlassian MCP (Jira + Confluence)** — the actual tracker and wiki this course's
   content is prepared for (`jira-content.md`/`confluence-content.md` in
   `brownfield-project/`, matching your team's real day-to-day tooling). **This is the
-  primary tool Module 2 uses in this delivery.**
+  primary tool Module 2 uses in this delivery** — and Modules 4 and the Capstone use it
+  again, write side, to sync tasks into Jira and publish the review trail to Confluence.
+  The server exposes real read *and* write tools for both products (create/update Jira
+  issues, create/update Confluence pages — see Atlassian's own
+  [Supported tools](https://support.atlassian.com/atlassian-rovo-mcp-server/docs/supported-tools/)
+  reference), scoped by whatever your Atlassian account can already do — no separate
+  write-scope setup beyond the OAuth login below.
 - **GitHub MCP** — the curated repos' own real issue history (`device-opc-ua#53` and
   friends) lives on GitHub. Secondary — useful for cross-referencing the original
   upstream report behind a Jira ticket if you want the full history.
@@ -92,6 +98,12 @@ should get back something matching `jira-content.md`'s SDDTR-1/SDDTR-2 content (
 whatever your instance's actual tickets say) — not a generic "I don't have access" or a
 plausible-sounding invention. Do the same for Confluence: *"Search the
 `[your space key]` Confluence space for a page about platform architecture."*
+
+**Also verify write access now, not in Module 4 for the first time**: ask your agent to
+create one throwaway Jira issue (any summary, e.g. "MCP write test — delete me") in your
+project, then open it in a browser to confirm it's really there. Delete it once
+confirmed. Module 4 and the Capstone both depend on write access actually working —
+better to find out it doesn't during setup than mid-module.
 
 ---
 

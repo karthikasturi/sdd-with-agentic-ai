@@ -13,8 +13,10 @@ module builds on.
 
 **Before this module**: run through `../../setup-guide.md` — toolchains, the reference
 project clone, and a smoke test — so Day 1 starts with a working environment, not a
-debugging session. Module 2 additionally needs `../../mcp-setup.md` (GitHub MCP access)
-— worth doing that one now too, even though it isn't used until then.
+debugging session. If EdgeX Foundry, OPC UA, or Modbus are new to you, read
+`../../edgex-primer.md` first — the assignment pool below assumes that vocabulary.
+Module 2 additionally needs `../../mcp-setup.md` (GitHub MCP access) — worth doing that
+one now too, even though it isn't used until then.
 
 ## Hands-on
 
