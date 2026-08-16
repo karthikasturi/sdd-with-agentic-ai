@@ -16,7 +16,7 @@ review once already, on your carried-forward increment. Run the same lifecycle o
 second increment using your own judgment about what "good" looks like, not a reference
 file.
 
-If you want a sanity check anyway: `../../../brownfield-project/specs/001-opcua-threshold-alerting/`
+If you want a sanity check anyway: `../../brownfield-project/specs/001-opcua-threshold-alerting/`
 is the instructor's own full lifecycle, start to finish, real code and real tests
 included — not shaped like your spec, but the same *process* applied to completion.
 
