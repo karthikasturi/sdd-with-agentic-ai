@@ -36,6 +36,14 @@ dotnet build samples/ConsoleReferenceServer
 If this doesn't build cleanly, flag it — it's the one piece of this course's toolchain
 that's still unverified.
 
+**If your team's assignment requires you to push real commits** (most pairs do): the
+`Siemens-training` org repos are **read-only for participants by design** — fork
+whichever curated repo(s) your pair touches to your own personal GitHub account first
+(`gh repo fork Siemens-training/device-opc-ua --clone=false`, or fork straight from
+`edgexfoundry/<repo>` if your pair's repo has no `Siemens-training` fork), then add your
+fork as an additional remote in your local submodule checkout and push there. Nobody
+needs write access to the shared org repos — every team pushes to their own account.
+
 ## 2. Editor and agent
 
 - **VS Code**, current version.
