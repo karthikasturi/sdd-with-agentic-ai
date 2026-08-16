@@ -49,14 +49,20 @@ Code use separate MCP configs even in the same VS Code window): `mcp-setup.md`.
 ## 4. Clone the reference project
 
 ```
-git clone <brownfield-project-repo-url>
+git clone https://github.com/Siemens-training/brownfield-project.git
 cd brownfield-project
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 100
 ```
 
 This pulls the 5 curated repos (`edgex-go`, `device-modbus-go`, `device-opc-ua`,
-`edgex-ui-go`, `opc-ua-dotnet`) as submodules, shallow-cloned. `README.md` and
-`assignment-pool.md` at the repo root are your starting points.
+`edgex-ui-go`, `opc-ua-dotnet`) as submodules, shallow-cloned. Two of them
+(`device-opc-ua`, `edgex-ui-go`) resolve from `Siemens-training` forks carrying this
+course's own `course/opcua-threshold-alerting` branch — the actual worked reference
+implementation, not just the vanilla upstream code. The other three point at real
+upstream directly since they're used unmodified. Verified against a genuinely fresh
+clone during prep: `go test ./internal/threshold/... -cover` passes at 94.3%
+immediately after clone, no extra steps. `README.md` and `assignment-pool.md` at the
+repo root are your starting points.
 
 ## 5. Spec Kit and OpenSpec CLIs
 

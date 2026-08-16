@@ -38,9 +38,11 @@ three days flow, module by module, and what's real vs. what's still in progress.
 
 The actual project teams work in — EdgeX Foundry (Go), edgex-ui-go (Angular), and OPC
 UA .NET Standard (C#), a curated slice of a real, currently-maintained open-source
-industrial-IoT platform — lives in a **separate companion repo**, not in this one. It's
-meant to read like a real product's source, not course collateral. Ask your instructor
-for the link if you don't have it yet.
+industrial-IoT platform — lives in a **separate companion repo**, not in this one:
+[`Siemens-training/brownfield-project`](https://github.com/Siemens-training/brownfield-project)
+(public). It's meant to read like a real product's source, not course collateral —
+`lab/setup-guide.md` §4 has the real clone command, verified against a genuinely fresh
+clone.
 
 ## How the three days flow
 
