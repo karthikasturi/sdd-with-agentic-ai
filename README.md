@@ -18,12 +18,21 @@ three days flow, module by module, and what's real vs. what's still in progress.
 
 ## Before Day 1
 
-- [`demo/setup-guide.md`](demo/setup-guide.md) — toolchains, the reference project
+- [`lab/setup-guide.md`](lab/setup-guide.md) — toolchains, the reference project
   clone, a smoke test. Run this first.
-- [`demo/mcp-setup.md`](demo/mcp-setup.md) — MCP server setup (Atlassian Jira/Confluence,
-  primary; GitHub, secondary) for both Copilot and Claude Code.
-- [`demo/tool-reference.md`](demo/tool-reference.md) — command mapping between the two
+- [`lab/mcp-setup.md`](lab/mcp-setup.md) — MCP server setup (GitHub Copilot primary,
+  Claude Code as a secondary guide) for Atlassian Jira/Confluence and GitHub.
+- [`lab/tool-reference.md`](lab/tool-reference.md) — command mapping between the two
   tools, for every hands-on step.
+
+## Hands-on vs. demo material
+
+- **`lab/`** — everything a participant actually does: setup, MCP config, tool
+  reference, and every module's hands-on steps (and, starting with the Capstone, the
+  formal per-team requirements). This is what you work from during the live course.
+- **`demo/`** — the presenter-facing material: each module's "Demo talk track" script,
+  and `review-trail.html`, for a sales/evaluation walkthrough. Not needed to run the
+  hands-on labs themselves.
 
 ## The reference codebase
 

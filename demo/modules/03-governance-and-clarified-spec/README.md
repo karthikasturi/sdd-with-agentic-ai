@@ -27,7 +27,7 @@ your assignment touches. Encode what you found — real conventions already in u
 error-handling patterns, existing services to extend rather than duplicate) — not a
 generic best-practices list you'd write for a greenfield project. Use your tool's
 constitution command (`/speckit-constitution` or `/speckit.constitution` — see
-`../../tool-reference.md`) rather than hand-editing the template.
+`../../../lab/tool-reference.md`) rather than hand-editing the template.
 
 **Checkpoint**: compare against
 `../../../brownfield-project/.specify/memory/constitution.md`. Don't expect to match it

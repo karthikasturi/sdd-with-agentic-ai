@@ -1,4 +1,4 @@
-# MCP Server Setup — GitHub Copilot & Claude Code
+# MCP Server Setup — GitHub Copilot (primary) & Claude Code (secondary)
 
 Module 2 (Discovery at Scale) needs your agent connected to the bug/defect tracker and
 to design documentation, alongside the code itself — that's what "MCP-connected design

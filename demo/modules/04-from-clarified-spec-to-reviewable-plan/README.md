@@ -18,7 +18,7 @@ draft presented as if it were right the first time.
 ### Step 1 — Generate a plan
 
 Run your plan-generation step (`/speckit-plan` / `/speckit.plan` — see
-`../../tool-reference.md`) against your Day-1 spec (the one your team chose to carry
+`../../../lab/tool-reference.md`) against your Day-1 spec (the one your team chose to carry
 forward, post-clarify). Review it **line by line as a team** before accepting it — Step
 2 depends on someone having actually read it, not skimmed it.
 

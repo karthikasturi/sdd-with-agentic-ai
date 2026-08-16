@@ -16,7 +16,7 @@ just noted and left broken.
 ### Step 1 — Generate and run a checklist
 
 Run your checklist step (`/speckit-checklist` / `/speckit.checklist` — see
-`../../tool-reference.md`) against your spec. Read every item — don't just check the
+`../../../lab/tool-reference.md`) against your spec. Read every item — don't just check the
 boxes that auto-passed.
 
 **Checkpoint**: `checklist.md` has one item that failed on first pass — CHK004,

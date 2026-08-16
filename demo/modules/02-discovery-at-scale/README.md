@@ -21,7 +21,7 @@ questions won't.
 
 **Before Step 1**: confirm your MCP connections are actually live, Atlassian
 (Jira + Confluence, primary) and GitHub (secondary, cross-reference) —
-`../../mcp-setup.md` has setup for both, for both Copilot and Claude Code, plus a
+`../../../lab/mcp-setup.md` has setup for both, for both Copilot and Claude Code, plus a
 verification step for each. Step 3 below depends on Atlassian specifically working, not
 just being installed — and on you naming your team's exact Jira project key in every
 query, not a vague "search Jira."
@@ -66,7 +66,7 @@ closing section names this directly: nothing tells you in advance which question
 
 ### Step 3 — Search the issue tracker for precedent before scoping anything
 
-Using your MCP-connected **Atlassian** tool (`../../mcp-setup.md`, verified before this
+Using your MCP-connected **Atlassian** tool (`../../../lab/mcp-setup.md`, verified before this
 step — not the browser, not memory), search **your team's Jira project** (name the exact
 project key — see "Be precise about project/space" in `mcp-setup.md`) for your assigned
 pair's defect ticket and anything else labeled with your `pair-N` tag. Then, optionally,

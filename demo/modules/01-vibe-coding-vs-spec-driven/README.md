@@ -11,9 +11,9 @@ draws from starting this module. This module's own hands-on exercise is self-con
 in `vibe-coding-exhibit/`, but Steps 1–2 below set up the real project every later
 module builds on.
 
-**Before this module**: run through `../../setup-guide.md` — toolchains, the reference
+**Before this module**: run through `../../../lab/setup-guide.md` — toolchains, the reference
 project clone, and a smoke test — so Day 1 starts with a working environment, not a
-debugging session. Module 2 additionally needs `../../mcp-setup.md` (GitHub MCP access)
+debugging session. Module 2 additionally needs `../../../lab/mcp-setup.md` (GitHub MCP access)
 — worth doing that one now too, even though it isn't used until then.
 
 ## Hands-on
@@ -35,7 +35,7 @@ you've claimed a pair and read both linked GitHub issues/descriptions.
 ### Step 2 — Install and scaffold both frameworks
 
 Confirm your agentic coding tool (GitHub Copilot or Claude Code) is installed and
-authenticated in VS Code — see `../../tool-reference.md` for the command mapping between
+authenticated in VS Code — see `../../../lab/tool-reference.md` for the command mapping between
 the two; every hands-on step in this course works with either. Then, in your own scratch
 working directory (**not** this repo):
 
@@ -46,7 +46,7 @@ npx @fission-ai/openspec@latest init --tools claude .
 ```
 
 (Swap `claude` for `copilot`/`github-copilot` in both commands if that's your tool — see
-`../../tool-reference.md`. These are the real CLIs, the same ones
+`../../../lab/tool-reference.md`. These are the real CLIs, the same ones
 `../../../brownfield-project/` was scaffolded with, run for real during this course's
 own prep to confirm the commands below are accurate.)
 

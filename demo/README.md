@@ -1,17 +1,20 @@
-# Spec-Driven Development Package — Complete, All 3 Days
+# Spec-Driven Development Package — Demo & Presenter Material
 
-**All 8 modules plus the Capstone are built and real.** The original from-scratch
-Python/FastAPI version this replaced has been removed (fully superseded, recoverable
-from git history if ever needed).
+**This folder is the presenter/demo side of the course.** Hands-on participant material
+is moving to the sibling `../lab/` folder — `../lab/setup-guide.md`,
+`../lab/mcp-setup.md`, and `../lab/tool-reference.md` already live there, and
+`../lab/capstone/` is the first module fully migrated. Modules 1–8 below still have
+their **Hands-on** and **Demo talk track** sections combined in one file each, pending
+the same split — treat the Hands-on section in each as the current source of truth for
+participants until that migration finishes, and the Demo talk track section as what
+this folder is ultimately for.
 
 ## Structure
 
 ```
 demo/
-  README.md                    this file
-  setup-guide.md                Day-0 environment setup — run this before Day 1
-  mcp-setup.md                  MCP server setup for Module 2 (Copilot + Claude Code, both configs)
-  tool-reference.md            GitHub Copilot ↔ Claude Code command mapping (Spec Kit + OpenSpec)
+  README.md          this file
+  review-trail.html  10-slide presenter walkthrough
   modules/
     01-vibe-coding-vs-spec-driven/             team formation, both frameworks scaffolded, vibe-coding exhibit
     02-discovery-at-scale/                     MCP-style discovery, service/dependency map
@@ -21,7 +24,10 @@ demo/
     06-reviewing-validating-maintaining/       instructor-provided flawed-change review
     07-multi-agent-workflows-and-team-adoption/  real, verified delegation
     08-common-pitfalls-and-anti-patterns/      escalation-antipattern exhibit
-    capstone/                                  closing project — less scaffolding, on purpose
+    (capstone/ has moved — see ../lab/capstone/)
+
+../lab/               participant-facing hands-on material (setup, MCP, tool reference,
+                       and — as the migration continues — each module's Hands-on section)
 ```
 
 The reference codebase lives in the separate `../brownfield-project/` repo (EdgeX
@@ -70,7 +76,10 @@ OpenSpec scaffold actually run during prep — not staged output.
       both tested and committed on course branches.
 - [x] `review-trail.html` rebuild — 10-slide walkthrough (JS/data verified; visual
       render unverifiable in this sandbox, no browser available).
-- [x] `setup-guide.md` and `mcp-setup.md` — Day-0 environment and MCP setup.
+- [x] `../lab/setup-guide.md` and `../lab/mcp-setup.md` — Day-0 environment and MCP
+      setup, now living in `lab/` alongside the rest of the hands-on material.
+- [ ] Hands-on/demo-talk-track split for Modules 1–8 — `lab/capstone/` is the first one
+      migrated; the other 8 still have both sections combined in one file.
 - [ ] Real GitHub forks for the submodules (currently local branches only) — needed only
       if this goes out to participants who need to push their own commits; not required
       for instructor-led delivery from this machine.
