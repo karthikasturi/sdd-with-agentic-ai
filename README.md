@@ -28,8 +28,8 @@ three days flow, module by module, and what's real vs. what's still in progress.
 ## Hands-on vs. demo material
 
 - **`lab/`** — everything a participant actually does: setup, MCP config, tool
-  reference, and every module's hands-on steps (and, starting with the Capstone, the
-  formal per-team requirements). This is what you work from during the live course.
+  reference, every module's hands-on steps and exhibit files, and the Capstone's formal
+  requirements. This is what you work from during the live course.
 - **`demo/`** — the presenter-facing material: each module's "Demo talk track" script,
   and `review-trail.html`, for a sales/evaluation walkthrough. Not needed to run the
   hands-on labs themselves.

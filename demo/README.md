@@ -1,13 +1,10 @@
 # Spec-Driven Development Package — Demo & Presenter Material
 
 **This folder is the presenter/demo side of the course.** Hands-on participant material
-is moving to the sibling `../lab/` folder — `../lab/setup-guide.md`,
-`../lab/mcp-setup.md`, and `../lab/tool-reference.md` already live there, and
-`../lab/capstone/` is the first module fully migrated. Modules 1–8 below still have
-their **Hands-on** and **Demo talk track** sections combined in one file each, pending
-the same split — treat the Hands-on section in each as the current source of truth for
-participants until that migration finishes, and the Demo talk track section as what
-this folder is ultimately for.
+lives in the sibling `../lab/` folder — setup guides, tool reference, every module's
+Hands-on section, and the Capstone's formal requirements all migrated there. Every
+module below now contains its Demo talk track only, cross-referencing `../lab/` for the
+exhibit files and reference artifacts it walks through.
 
 ## Structure
 
@@ -26,8 +23,9 @@ demo/
     08-common-pitfalls-and-anti-patterns/      escalation-antipattern exhibit
     (capstone/ has moved — see ../lab/capstone/)
 
-../lab/               participant-facing hands-on material (setup, MCP, tool reference,
-                       and — as the migration continues — each module's Hands-on section)
+../lab/               participant-facing hands-on material: setup-guide.md, mcp-setup.md,
+                       tool-reference.md, modules/01-08/README.md (Hands-on sections +
+                       exhibit files), capstone/ (requirements.md + hands-on.md)
 ```
 
 The reference codebase lives in the separate `../brownfield-project/` repo (EdgeX
@@ -78,8 +76,8 @@ OpenSpec scaffold actually run during prep — not staged output.
       render unverifiable in this sandbox, no browser available).
 - [x] `../lab/setup-guide.md` and `../lab/mcp-setup.md` — Day-0 environment and MCP
       setup, now living in `lab/` alongside the rest of the hands-on material.
-- [ ] Hands-on/demo-talk-track split for Modules 1–8 — `lab/capstone/` is the first one
-      migrated; the other 8 still have both sections combined in one file.
+- [x] Hands-on/demo-talk-track split for Modules 1–8 and the Capstone — complete;
+      every cross-reference (76 across the repo) verified to resolve after the move.
 - [ ] Real GitHub forks for the submodules (currently local branches only) — needed only
       if this goes out to participants who need to push their own commits; not required
       for instructor-led delivery from this machine.
