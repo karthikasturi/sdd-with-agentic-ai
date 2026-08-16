@@ -22,12 +22,14 @@ one defect spec, same as what your team produces below.
 
 ### Step 1 — Write a constitution from what you actually found
 
-Using your team's `service-map.md` from Module 2, write a constitution for the area
-your assignment touches. Encode what you found — real conventions already in use (naming,
-error-handling patterns, existing services to extend rather than duplicate) — not a
-generic best-practices list you'd write for a greenfield project. Use your tool's
-constitution command (`/speckit-constitution` or `/speckit.constitution` — see
-`../../tool-reference.md`) rather than hand-editing the template.
+Do this in your team's fork from Module 2 Step 5 (`my-team-work/`, or whatever you
+named it) — not a new directory. Using your team's `service-map.md` from Module 2,
+write a constitution for the area your assignment touches. Encode what you found — real
+conventions already in use (naming, error-handling patterns, existing services to
+extend rather than duplicate) — not a generic best-practices list you'd write for a
+greenfield project. Use your tool's constitution command (`/speckit-constitution` or
+`/speckit.constitution` — see `../../tool-reference.md`) rather than hand-editing the
+template.
 
 **Checkpoint**: compare against
 `../../../brownfield-project/.specify/memory/constitution.md`. Don't expect to match it

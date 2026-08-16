@@ -96,5 +96,42 @@ Include the defect you pulled in and its *real* root cause, not just its symptom
 discovery record. Keep your map — Module 3 references it directly when you write your
 constitution.
 
+### Step 5 — Set up your team's persistent workspace
+
+Everything from here through the Capstone needs a real place to live — not the
+throwaway scratch directory from Module 1 Step 2 (that was a one-time comparison, meant
+to be discarded), and not the shared read-only `brownfield-project` clone from Day 0
+either. Fork `brownfield-project` itself to your own (or your team's) GitHub account:
+
+```
+gh repo fork Siemens-training/brownfield-project --clone=false
+git clone https://github.com/<your-account>/brownfield-project.git my-team-work
+cd my-team-work
+git submodule update --init --recursive --depth 100
+```
+
+This fork **is** your team's real workspace from now on:
+- Save your filled-in `service-map.md` from Step 4 here (anywhere sensible — e.g. a new
+  `team-notes/` folder at the root).
+- Module 3's constitution and specs (`/speckit-constitution`, `/speckit-specify`) run
+  **here**, at this fork's root — `.specify/` and Spec Kit's commands are already
+  scaffolded (this fork inherited them from `brownfield-project`), so there's no
+  `specify init` to re-run. Your new spec becomes `specs/002-...` (or whatever number
+  Spec Kit assigns), sitting alongside the untouched instructor reference
+  (`specs/001-opcua-threshold-alerting/`, `specs/defect-001-device-opc-ua-oom/`) — don't
+  edit those, they're your checkpoints, not your starting point.
+- Your actual **code** changes happen inside `repos/<your-repo>/` in this same
+  checkout — `setup-guide.md`'s note on forking the specific curated repo(s) your pair
+  touches (separately from this) still applies; add that fork as a second remote inside
+  `repos/<your-repo>/` and push there.
+- This fork is what you'll share for Capstone submission — "your team's repo/branch"
+  means this one.
+
+**Checkpoint**: `git log --oneline -1` inside your fork should show it's genuinely
+yours (your own remote, not `Siemens-training`'s). If your team has multiple members,
+agree now on who pushes where — one shared fork with everyone pushing to it, or one
+member's fork as the team's canonical copy with others opening PRs into it. Either
+works; not deciding now is what causes conflicts in Module 4.
+
 See `../../../demo/modules/02-discovery-at-scale/README.md` for this module's
 presenter/demo talk track — not needed to complete the hands-on above.
