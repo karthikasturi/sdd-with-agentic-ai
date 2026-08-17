@@ -92,5 +92,11 @@ first — real per-type validation, working idempotent acknowledgment. Then look
 including one gap a better prompt can fix and one it structurally can't. That second gap
 is the one worth sitting with before Module 2.
 
+**Want a structured way to write the second prompt, instead of just "try harder"?**
+`../../reference/codegen-prompt-framework.md` names six layers a code-generation
+prompt needs (CODERS) and walks through exactly why `PROMPT.md` and
+`PROMPT-ADVANCED.md` differ layer by layer — including which layer stays broken in
+*both*, and why that's the one no amount of better wording fixes.
+
 See `../../../demo/modules/01-vibe-coding-vs-spec-driven/README.md` for this module's
 presenter/demo talk track — not needed to complete the hands-on above.
