@@ -18,6 +18,12 @@ Pair 1) and `../../../brownfield-project/specs/defect-001-device-opc-ua-oom/` (i
 defect half) are the two real, complete checkpoints for this module — one feature spec,
 one defect spec, same as what your team produces below.
 
+**Working in a much larger monorepo day to day** (50-100+ modules, not this course's
+5 curated repos)? `../../reference/monorepo-scaling.md` covers where Spec Kit actually
+recommends specs live at that scale — a single root-level `specs/` (what this course
+uses) isn't the documented pattern once you're past a handful of independently-owned
+modules.
+
 ## Hands-on
 
 ### Step 1 — Write a constitution from what you actually found

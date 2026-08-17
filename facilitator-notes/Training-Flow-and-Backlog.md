@@ -101,14 +101,23 @@ in building a large prompt-file library.
 
 ## Corrections captured during Module 0 review
 
-- The brownfield project repo's five components are **plain folders in one repo**, not git
-  submodules, contrary to what the `repos/` README currently says. This actually simplifies the
-  `.github/instructions/*.instructions.md` + `applyTo` glob guidance above: no submodule boundary to
-  worry about, pure path-based scoping within a single repo. The `repos/` README and this document's
-  earlier `.github` research note both need a follow-up correction pass.
-- This same "plain folders, not submodules" shape is also how the client's real monorepo is
-  structured (pain point 2 below: GB-scale, 50-100+ modules as folders), so the brownfield project's
-  corrected structure is actually a closer match to their real environment than previously described.
+**2026-08-18 clarification**: the item below is about the **client's own real production repo**, not
+`brownfield-project`. Originally logged ambiguously enough that a later pass (this session) misread it
+as a claim about our own repo and "verified" it against `brownfield-project`'s actual `.gitmodules` —
+that verification was answering the wrong question and has been removed. No change needed to our
+`repos/` README; our submodule structure is real, intentional, and already accurately documented
+(`dc75469`). Reworded below for clarity, same underlying fact, correct scope this time:
+
+- **The client's own real production repo is one large monorepo of plain folders, not git
+  submodules** — this is genuine environment context (pain point 2 below: GB-scale, 50-100+ modules
+  as folders), useful for calibrating how course content and any `.github/instructions/*.instructions.md`
+  + `applyTo`-glob guidance should generalize to their world: no submodule git-boundary to reason
+  about there, pure path-based scoping within one repo. `brownfield-project` itself stays
+  submodule-based on purpose — separate linked repos is the more honest model for *this* course's
+  five genuinely-separate upstream projects (see `brownfield-project/README.md`'s own "Why this
+  shape" section). The two repos are allowed to differ in shape; only the client's shape needs
+  mirroring in what we teach about `applyTo` scoping working repo-root-relative, not
+  submodule-relative.
 
 ## Claude Code equivalent: CLAUDE.md, researched for the reference material
 
@@ -140,6 +149,22 @@ discover organically via the Module 1 pointer. `tool-reference.md`'s new "Custom
 locations" section (skills/agents/prompts) is the prerequisite piece for that exercise and is done;
 the exercise itself isn't designed yet.
 
+## Monorepo-scaling reference (raw pain point #2, addressed)
+
+**Built 2026-08-18**: `lab/reference/monorepo-scaling.md` — the client's real production repo is
+GB-scale, 50-100+ modules, plain folders in one git repo (see the corrected note above); this
+directly answers pain point #2, previously unaddressed. Covers two verified-separately things:
+Spec Kit's own documented monorepo pattern (one `.specify/`+`specs/` pair per module, deep in that
+module's own directory, `SPECIFY_INIT_DIR` for root-scoped targeting, independent per-module feature
+numbering, no built-in constitution inheritance), and which Copilot customization file types can
+actually live nested/deep in a module (`AGENTS.md` genuinely can, with real caveats — VS Code's
+recursive discovery is behind an experimental setting, the CLI only walks cwd-to-git-root, not a
+full recursive scan; `copilot-instructions.md` and `.instructions.md` cannot — they stay
+centralized, only `.instructions.md`'s `applyTo` glob can *target* something deep). One research
+correction caught mid-pass: a WebSearch summary claimed Spec Kit specs live at `.specify/specs/` —
+false, contradicted by both the primary source (Spec Kit's own monorepo guide) and by every scaffold
+this course has actually run. Pointer added to Module 3's README.
+
 ## Open design question
 
 How do prompt/agent/skill artifacts fit alongside spec-driven development without competing with it or
@@ -153,9 +178,12 @@ content on top of it.
 ## Raw pain points captured from participants (for future module design, not yet actioned individually)
 
 1. Avoid unnecessary code generation, agents doing more than asked.
-2. Repo sizes in the gigabytes, monorepos with 50-100+ modules (this is exactly the scale the
-   EdgeX-based brownfield project was chosen to mirror, so later modules already touch this; worth
-   calling that connection out explicitly during Module 2).
+2. Repo sizes in the gigabytes, monorepos with 50-100+ modules. **Addressed 2026-08-18**: see
+   `lab/reference/monorepo-scaling.md` — this course's own reference project mirrors the *scale*
+   but not the *shape* (5 related submodules vs. one flat monorepo), so the new reference doc covers
+   the actually-documented pattern for the client's real shape specifically (per-module
+   `.specify/`+`specs/`, and which Copilot file types can live nested vs. must stay centralized).
+   Pointer added to Module 3.
 3. Context management (now covered at the mental-model level in the primer deck; may need a deeper
    pass later for the monorepo-scale case specifically).
 4. Projects running for decades, long-lived legacy code.
@@ -229,10 +257,12 @@ for any future diagram primitive in this deck system that draws a line pointing 
       this note) before writing; one correction: prompt files aren't deprecated, just superseded
       in practice by Agent Skills — worded that way in `tool-reference.md` now.
 - [x] ~~Correct the brownfield project's `repos/` README: plain folders, not git submodules.~~
-      **Struck 2026-08-18** — verified directly (`.gitmodules`, gitlinks, separate `.git` per
-      path all confirmed real), this premise was wrong. The README has correctly described real
-      submodules since commit `dc75469` (2026-08-16), before this note was written. Likely a live
-      misread of GitHub's web UI, not an actual repo issue.
+      **Struck 2026-08-18, corrected reasoning** — this was never a claim about
+      `brownfield-project`'s own README; the underlying note describes the **client's real
+      production repo** (plain folders, no submodules — real environment context, see the
+      "Corrections captured during Module 0 review" section above). No README change needed here;
+      `brownfield-project`'s submodule structure is real, intentional, and already accurately
+      documented (`dc75469`, 2026-08-16).
 - [ ] Decide which of the 10 raw pain points get woven into the existing Module 1-8 decks vs. handled
       as facilitator best-practice talking points vs. a separate advanced session. Proposed mapping
       pending review, see chat.
