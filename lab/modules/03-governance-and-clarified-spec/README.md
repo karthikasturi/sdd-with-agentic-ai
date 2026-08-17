@@ -27,8 +27,7 @@ named it) — not a new directory. Using your team's `service-map.md` from Modul
 write a constitution for the area your assignment touches. Encode what you found — real
 conventions already in use (naming, error-handling patterns, existing services to
 extend rather than duplicate) — not a generic best-practices list you'd write for a
-greenfield project. Use your tool's constitution command (`/speckit-constitution` or
-`/speckit.constitution` — see `../../tool-reference.md`) rather than hand-editing the
+greenfield project. Use `/speckit.constitution` (see `../../tool-reference.md`) rather than hand-editing the
 template.
 
 **Checkpoint**: compare against
@@ -41,14 +40,14 @@ and "handle errors" hasn't actually used Module 2's discovery yet.
 
 ### Step 2 — Draft two specs, clarify both
 
-**Input for each `/speckit-specify` call is your pair's actual assigned text, not a
+**Input for each `/speckit.specify` call is your pair's actual assigned text, not a
 free invention**: your Jira ticket's Description field (SDDTR-N, pulled in Module 2
 Step 3 — e.g. *"Evaluate subscribed OPC UA readings against per-resource thresholds and
 raise EdgeX Notifications when a reading crosses one..."*) if your Atlassian MCP
 connection is live, or the matching paragraph in
 `../../../brownfield-project/assignment-pool.md` otherwise — same content either way,
 Jira's is just the symptom-only/no-root-cause version for the defect side. Paste that
-text as the argument to `/speckit-specify` / `/speckit.specify`, once for the feature,
+text as the argument to `/speckit.specify`, once for the feature,
 once for the defect — don't retype it from memory or summarize it down, the point is
 starting from what was actually assigned, the way a real ticket would.
 
@@ -57,8 +56,8 @@ Draft a spec for your pair's **feature**, and a separate spec for your pair's **
 feature spec describes new desired behavior from scratch; a defect spec describes
 *correct* behavior against a symptom you didn't choose (see
 `defect-001-device-opc-ua-oom/spec.md`'s "Problem Statement" section — there's no
-equivalent section in a feature spec). Run a clarify pass (`/speckit-clarify` /
-`/speckit.clarify`) on **both** — this is where your service-map.md's discovery
+equivalent section in a feature spec). Run a clarify pass (`/speckit.clarify`) on
+**both** — this is where your service-map.md's discovery
 actually gets folded in, since the raw ticket text alone won't mention it.
 
 **Checkpoint**: feature half — compare structure against `spec.md` and the ambiguities

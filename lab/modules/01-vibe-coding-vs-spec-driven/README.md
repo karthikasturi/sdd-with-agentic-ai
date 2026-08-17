@@ -36,33 +36,36 @@ you've claimed a pair and read both linked GitHub issues/descriptions.
 
 ### Step 2 — Install and scaffold both frameworks
 
-Confirm your agentic coding tool (GitHub Copilot or Claude Code) is installed and
-authenticated in VS Code — see `../../tool-reference.md` for the command mapping between
-the two; every hands-on step in this course works with either. Then, in your own scratch
-working directory (**not** this repo):
+Confirm GitHub Copilot is installed and authenticated in VS Code — see
+`../../tool-reference.md` for the full command list this course uses. Then, in your own
+scratch working directory (**not** this repo):
 
 ```
 mkdir my-team-project && cd my-team-project
-uvx --from git+https://github.com/github/spec-kit.git specify init --here --integration claude
-npx @fission-ai/openspec@latest init --tools claude .
+uvx --from git+https://github.com/github/spec-kit.git specify init --here --integration copilot
+npx @fission-ai/openspec@latest init --tools github-copilot .
 ```
 
-(Swap `claude` for `copilot`/`github-copilot` in both commands if that's your tool — see
-`../../tool-reference.md`. These are the real CLIs, the same ones
-`../../../brownfield-project/` was scaffolded with, run for real during this course's
-own prep to confirm the commands below are accurate.)
+(These are the real CLIs — actually run for real during this course's own prep to
+confirm the commands below are accurate.)
 
 **Checkpoint**: you should now have **two** parallel scaffolds in the same project:
-Spec Kit's `.specify/` (memory/, templates/, scripts/, workflows/) plus your agent's
-commands (`.claude/skills/speckit-*` or Copilot's `.github/prompts/speckit.*`), *and*
-OpenSpec's `openspec/` (`changes/`, `specs/`, `config.yaml`) plus its own commands
-(`.claude/commands/opsx/` or `.github/prompts/opsx-*.prompt.md`). Compare *structure*,
-not content, against `../../../brownfield-project/.specify/` and `.claude/` for Spec
-Kit's shape. Note what's structurally different about OpenSpec: no per-feature numbered
-directory, one living `specs/` tree plus a `changes/` folder for proposals-in-flight —
-this is the "verbose multi-file-per-feature vs. compact delta-based" difference
-`../../../SDD-Framework-Comparison_Spec-Kit-vs-OpenSpec.docx` describes, now something
-you can see in your own two directories instead of reading about.
+Spec Kit's `.specify/` (memory/, templates/, scripts/, workflows/) plus Copilot's own
+commands (`.github/prompts/speckit.*`), *and* OpenSpec's `openspec/` (`changes/`,
+`specs/`, `config.yaml`) plus its own commands (`.github/prompts/opsx-*.prompt.md`).
+Compare `.specify/`'s structure directly against
+`../../../brownfield-project/.specify/` — identical either way, it's tool-agnostic. For
+the commands folder itself, `brownfield-project/.claude/skills/speckit-*` is what the
+*same* scaffold step produces when run with Claude Code instead — that's what this
+project was actually built with during prep, so it's real, just a different tool's
+output than your own `.github/prompts/speckit.*`. Open one file from each to see the
+shape is the same (one file per command) even though the folder and naming convention
+differ by tool. Note what's structurally different about OpenSpec vs. Spec Kit itself:
+no per-feature numbered directory, one living `specs/` tree plus a `changes/` folder for
+proposals-in-flight — this is the "verbose multi-file-per-feature vs. compact
+delta-based" difference `../../../SDD-Framework-Comparison_Spec-Kit-vs-OpenSpec.docx`
+describes, now something you can see in your own two directories instead of reading
+about.
 
 ### Step 3 — Compare a basic prompt against a better one
 

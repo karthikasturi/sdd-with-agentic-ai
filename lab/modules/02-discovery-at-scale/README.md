@@ -21,10 +21,16 @@ questions won't.
 
 **Before Step 1**: confirm your MCP connections are actually live, Atlassian
 (Jira + Confluence, primary) and GitHub (secondary, cross-reference) —
-`../../mcp-setup.md` has setup for both, for both Copilot and Claude Code, plus a
-verification step for each. Step 3 below depends on Atlassian specifically working, not
-just being installed — and on you naming your team's exact Jira project key in every
-query, not a vague "search Jira."
+`../../mcp-setup.md` has setup and a verification step for each. Step 3 below depends
+on Atlassian specifically working, not just being installed — and on you naming your
+team's exact Jira project key in every query, not a vague "search Jira."
+
+**Two ready-to-use prompt templates** turn Steps 1–3 below into a single copy-pasteable
+prompt instead of something you compose yourself: `discovery-prompt-doc-assisted.md`
+(your MCP connections are live, you have a real ticket to start from) and
+`discovery-prompt-zero-doc.md` (no working documentation at all — Step 2 below is
+exactly this case). Use whichever matches what you're actually facing; they ask
+different questions on purpose, not the same questions with different framing.
 
 ## Hands-on
 
@@ -53,9 +59,10 @@ for why that's left in on purpose.
 
 Pick one under-documented corner — `repos/device-opc-ua/internal/` (mostly no
 package-level doc comments) or `repos/opc-ua-dotnet` (a large SDK where the low-level
-API is documented but "how do I actually use this for X" mostly isn't). Ask your agent
-to explain what a specific piece of code does and why, using only what's in the
-repository — no outside search. Then ask it to rate its own confidence.
+API is documented but "how do I actually use this for X" mostly isn't). This is exactly
+what `discovery-prompt-zero-doc.md` is for — use it here instead of composing your own
+prompt; it produces a Service Boundary Card worth keeping, not just an answer to read
+once and discard. Then ask your agent to rate its own confidence.
 
 **Checkpoint**: did your agent's confidence match how well-founded its answer actually
 was, or did it sound just as sure about a guess as it did about Q1's documented answer?
@@ -113,7 +120,7 @@ git submodule update --init --recursive --depth 100
 This fork **is** your team's real workspace from now on:
 - Save your filled-in `service-map.md` from Step 4 here (anywhere sensible — e.g. a new
   `team-notes/` folder at the root).
-- Module 3's constitution and specs (`/speckit-constitution`, `/speckit-specify`) run
+- Module 3's constitution and specs (`/speckit.constitution`, `/speckit.specify`) run
   **here**, at this fork's root — `.specify/` and Spec Kit's commands are already
   scaffolded (this fork inherited them from `brownfield-project`), so there's no
   `specify init` to re-run. Your new spec becomes `specs/002-...` (or whatever number

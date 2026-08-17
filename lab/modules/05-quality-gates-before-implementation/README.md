@@ -15,8 +15,8 @@ just noted and left broken.
 
 ### Step 1 — Generate and run a checklist
 
-Run your checklist step (`/speckit-checklist` / `/speckit.checklist` — see
-`../../tool-reference.md`) against your spec. Read every item — don't just check the
+Run your checklist step (`/speckit.checklist` — see `../../tool-reference.md`) against
+your spec. Read every item — don't just check the
 boxes that auto-passed.
 
 **Checkpoint**: `checklist.md` has one item that failed on first pass — CHK004,
@@ -27,8 +27,8 @@ condition keeps recurring?") — it's a real gap, not manufactured for this exer
 
 ### Step 2 — Run analyze
 
-Run your cross-artifact consistency check (`/speckit-analyze` / `/speckit.analyze`)
-across spec, plan, and tasks.
+Run your cross-artifact consistency check (`/speckit.analyze`) across spec, plan, and
+tasks.
 
 **Checkpoint**: `analyze-report.md` documents a real HIGH-severity finding (F1) about a
 plan that assumed a shared platform endpoint enforced something it doesn't — confirmed

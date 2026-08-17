@@ -47,14 +47,14 @@ building the *other* half of the pair reveal something that changes the answer?
 
 Two valid ways to do the rewrite, pick whichever fits what Step 2 found: if the fix is
 mostly *additive* (a missing requirement, an unresolved ambiguity), run
-`/speckit-specify` / `/speckit.specify` again with your original assigned text (Module
-3 Step 2's Jira/`assignment-pool.md` source) plus what changed, and let it regenerate;
-if it's mostly *corrective* (an over-specified constraint to remove, a wrong
-assumption), hand-edit `spec.md` directly, the same way Module 4's Plan Review Note
-corrects a plan by editing it, not regenerating it from scratch. Either way, re-run
-`/speckit-clarify` afterward — a rewritten spec deserves the same clarify pass the
-original got. Then compare the output your agent produces against what a first pass at
-this spec would likely have produced.
+`/speckit.specify` again with your original assigned text (Module 3 Step 2's
+Jira/`assignment-pool.md` source) plus what changed, and let it regenerate; if it's
+mostly *corrective* (an over-specified constraint to remove, a wrong assumption),
+hand-edit `spec.md` directly, the same way Module 4's Plan Review Note corrects a plan
+by editing it, not regenerating it from scratch. Either way, re-run `/speckit.clarify`
+afterward — a rewritten spec deserves the same clarify pass the original got. Then
+compare the output your agent produces against what a first pass at this spec would
+likely have produced.
 
 **Checkpoint**: you're not comparing against a pre-built answer here on purpose — this
 is the Day-1-to-now arc the Capstone measures. Keep both versions; the Capstone's

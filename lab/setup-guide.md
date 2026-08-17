@@ -47,12 +47,11 @@ needs write access to the shared org repos — every team pushes to their own ac
 ## 2. Editor and agent
 
 - **VS Code**, current version.
-- **GitHub Copilot** extension (licensed/provisioned) — **and/or**
-- **Claude Code CLI**, installed and authenticated, plus its VS Code extension if you
-  want the in-editor experience.
+- **GitHub Copilot** extension, licensed/provisioned.
 
-Whichever tool(s) your team has access to, `tool-reference.md` has the full command
-mapping so every hands-on step works the same either way.
+`tool-reference.md` has the full command list this course uses. (Using Claude Code
+instead of or alongside Copilot? See `reference/claude-code-guide.md` — not relevant to
+this cohort otherwise.)
 
 ## 3. MCP servers
 

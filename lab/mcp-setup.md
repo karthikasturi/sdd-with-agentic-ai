@@ -1,4 +1,4 @@
-# MCP Server Setup — GitHub Copilot (primary) & Claude Code (secondary)
+# MCP Server Setup — GitHub Copilot
 
 Module 2 (Discovery at Scale) needs your agent connected to the bug/defect tracker and
 to design documentation, alongside the code itself — that's what "MCP-connected design
@@ -22,21 +22,10 @@ Both sections below are sourced from current official documentation, cited inlin
 guessed at. Neither was end-to-end tested by me in this environment (no MCP tool access
 here) — run the verification steps before Module 2 depends on either.
 
-## Important: two separate configs, not one
-
-If you use **both** GitHub Copilot and Claude Code in VS Code, you configure MCP
-**twice** per server — Copilot and Claude Code don't share config, even in the same VS
-Code window:
-
-| Tool | Config location | Used by |
-|---|---|---|
-| GitHub Copilot (VS Code) | `.vscode/mcp.json` (workspace) or VS Code's global `mcp.json` | VS Code's own Copilot Chat/Agent mode |
-| Claude Code (CLI **and** VS Code extension) | `.mcp.json` at project root, or `~/.claude/settings.json` (user-level) | Both the CLI and the VS Code extension — the extension runs the CLI underneath, so one setup covers both |
-
-Setting up one does **not** configure the other. This is a real, currently-open point of
-confusion (see `anthropics/claude-code` issue #47344, a feature request asking for them
-to be unified) — not a mistake you made if a server you set up doesn't show up in the
-other tool. Applies identically to both servers below.
+(Setting up Claude Code alongside Copilot, or using it instead? MCP config is **not**
+shared between the two, even in the same VS Code window — see
+`reference/claude-code-guide.md` for the equivalent Claude Code setup and that gotcha in
+full. Not relevant to this cohort otherwise.)
 
 ---
 
@@ -58,8 +47,6 @@ Confluence space at setup time. Project/space precision has to happen in **every
 prompt**, not once at config time. See "Be precise about project/space," below — this
 is the single most important section in this document.
 
-### Copilot (VS Code)
-
 **Easiest**: click the official install badge from Atlassian's GitHub repo, or in VS
 Code: Extensions panel → search `@mcp atlassian` → Install → trust → OAuth sign-in →
 verify via Command Palette → **MCP: List Servers**.
@@ -75,20 +62,6 @@ verify via Command Palette → **MCP: List Servers**.
   }
 }
 ```
-
-### Claude Code (CLI + extension — one setup, both)
-
-```
-claude mcp add --transport http atlassian https://mcp.atlassian.com/v1/mcp/authv2 --scope project
-```
-Then authenticate: inside a Claude Code session, run `/mcp`, select `atlassian`, and
-complete the OAuth flow. `--scope project` writes to `.mcp.json` at your project root
-(shareable, no secrets in the file itself — auth is separate, browser-based).
-
-**API token alternative** (if OAuth isn't available in your environment): Atlassian
-account → Security → API tokens → create one → pass it via `--header` on the `add`
-command. Requires admin enablement in some Atlassian Cloud orgs — OAuth is the primary,
-recommended path.
 
 ### Verify Atlassian MCP
 
@@ -134,28 +107,15 @@ https://api.githubcopilot.com/mcp/
 Sourced from `docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server`
 and `github/github-mcp-server`'s `docs/remote-server.md`.
 
-### Copilot (VS Code)
 1. Extensions panel → search `@mcp github` → Install → trust → OAuth sign-in.
-2. Verify: Command Palette → **MCP: List Servers** → `github` running.
+2. Manual alternative, in `.vscode/mcp.json`:
+   ```json
+   { "servers": { "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" } } }
+   ```
 
-Manual, in `.vscode/mcp.json`:
-```json
-{ "servers": { "github": { "type": "http", "url": "https://api.githubcopilot.com/mcp/" } } }
-```
-
-### Claude Code (CLI + extension)
-```
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --scope project
-```
-PAT alternative: `--header "Authorization: Bearer <your-token>"` — generate one at
-GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained
-tokens**, resource owner your account, repository access **Public repositories
-(read-only)** (every repo this course uses is public — `edgexfoundry/*`,
-`OPCFoundation/UA-.NETStandard`).
-
-**Verify**: `claude mcp list` should show `github` connected. Ask your agent to fetch
-`edgexfoundry/device-opc-ua#53` and confirm the summary matches the real issue (OOM
-after ~11 hours, retention not reclaiming space) — not hallucinated.
+**Verify**: Command Palette → **MCP: List Servers** → `github` running. Ask your agent
+to fetch `edgexfoundry/device-opc-ua#53` and confirm the summary matches the real issue
+(OOM after ~11 hours, retention not reclaiming space) — not hallucinated.
 
 Unauthenticated GitHub API access works too, but rate-limits hard and fast.
 
@@ -165,8 +125,8 @@ Unauthenticated GitHub API access works too, but rate-limits hard and fast.
 
 - **VS Code shows 0 servers after adding one**: reload the window
   (`Developer: Reload Window` in the Command Palette).
-- **`claude mcp list` shows a server but "unreachable"**: re-run the `add` command; auth
-  may have expired or never completed — re-run `/mcp` inside a session to re-auth.
+- **MCP: List Servers shows a server but it's not responding**: remove and re-add it;
+  OAuth may have expired or never completed.
 - **Atlassian results include something from an unrelated project**: you weren't
   specific enough in the prompt — see "Be precise about project/space" above. This is
   the connection working correctly, doing exactly what a vague prompt asked for.
