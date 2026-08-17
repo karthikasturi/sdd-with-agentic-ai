@@ -31,10 +31,11 @@ demo/
 The reference codebase lives in the separate `../brownfield-project/` repo (EdgeX
 Foundry [Go] + edgex-ui-go [Angular] + OPC UA .NET Standard [C#]) — real, currently
 maintained open source, not synthetic. `../brownfield-project/assignment-pool.md` has
-the 6 real feature+defect pairs teams draw from starting Module 1; Pair 1 (OPC UA
-Threshold Alerting + `device-opc-ua#53`) is fully worked end to end — spec through a
-real, tested Go implementation *and* a real, tested Angular implementation — and doubles
-as the instructor's reference throughout.
+the 9 real feature+defect pairs teams draw from starting Module 1 — 6 generic dev pairs
+plus 3 function-matched pairs (QA, DevOps/CI-CD, Security) for teams staffed by people
+in those roles. Pair 1 (OPC UA Threshold Alerting + `device-opc-ua#53`) is fully worked
+end to end — spec through a real, tested Go implementation *and* a real, tested Angular
+implementation — and doubles as the instructor's reference throughout.
 
 ## How the three days flow
 
