@@ -19,6 +19,19 @@ Run your checklist step (`/speckit.checklist` — see `../../tool-reference.md`)
 your spec. Read every item — don't just check the
 boxes that auto-passed.
 
+**Sample input**: `/speckit.checklist` takes a domain/focus-area argument — real
+example, shaped to surface the kind of gap CHK004 (below) actually was:
+
+```
+/speckit.checklist Focus on the alert/notification lifecycle — creation,
+deduplication, and what happens when the same condition keeps recurring.
+```
+
+A narrower focus tends to surface sharper questions than a generic "check everything"
+run — you'll run `/speckit.checklist` again in Step 3 with a completely different
+focus, which is the point: one checklist command, reused for different domains, not
+one checklist meant to cover everything at once.
+
 **Checkpoint**: `checklist.md` has one item that failed on first pass — CHK004,
 duplicate-alert suppression, resolved by adding FR-015 directly to `spec.md`. Did your
 checklist surface anything comparable? If it came back all-green on the first try, look
@@ -30,6 +43,19 @@ condition keeps recurring?") — it's a real gap, not manufactured for this exer
 Run your cross-artifact consistency check (`/speckit.analyze`) across spec, plan, and
 tasks.
 
+**Sample input**: also takes an optional focus-area argument, but running it bare
+(no argument) is the common case — it checks all of spec/plan/tasks against each
+other and against the constitution by default:
+
+```
+/speckit.analyze
+```
+
+Add a focus only if you want to steer it at something specific, e.g.
+`/speckit.analyze Focus on whether plan.md's assumptions about shared platform
+endpoints are actually verified against those endpoints' real behavior` — the exact
+shape of question that produced Finding F1 below.
+
 **Checkpoint**: `analyze-report.md` documents a real HIGH-severity finding (F1) about a
 plan that assumed a shared platform endpoint enforced something it doesn't — confirmed
 by reading that endpoint's actual source and its own OpenAPI contract, not guessed.
@@ -39,6 +65,16 @@ Resolve your own findings the same way: fix the artifact, don't just note it and
 
 Add at least one checklist item that specifically checks a security, compliance, or
 code-coverage concern — not just functional correctness.
+
+**Sample input** — a second, separately-focused `/speckit.checklist` run, real
+example matching the real CHK016-019 section below:
+
+```
+/speckit.checklist Focus on security, compliance, and code coverage — does the
+plan state the auth posture for any new HTTP boundary, does new code's test
+coverage hold up against this repo's existing baseline, and does it pass this
+repository's own configured static-analysis gate.
+```
 
 **Checkpoint**: `checklist.md`'s "Security, Compliance & Code Coverage" section (added
 Day 2, after the original pass) has four. CHK016 asks whether the plan states its new

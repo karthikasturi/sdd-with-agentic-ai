@@ -22,6 +22,21 @@ your Day-1 spec (the one your team chose to carry
 forward, post-clarify). Review it **line by line as a team** before accepting it — Step
 2 depends on someone having actually read it, not skimmed it.
 
+**Sample input**: `/speckit.plan` takes an *optional* free-text argument — run it bare
+and it plans purely from your spec, constitution, and clarifications, or add guidance
+to steer a specific decision. Real example, grounded in Pair 1's actual Clarification
+Q3 (`clarify-log.md`, Module 3):
+
+```
+/speckit.plan Extend device-opc-ua directly per Clarification Q3 — no new
+subscriber service for v1; revisit extraction only if a second device-service
+type needs the same threshold logic.
+```
+
+Running it bare (no argument) is equally valid and more common — use an argument
+specifically when there's a decision already made (in clarify, or by your team) that
+you don't want the plan re-litigating from scratch.
+
 **Checkpoint**: you should have `plan.md`, `research.md`, `data-model.md`,
 `quickstart.md`, and `contracts/api.md`. Compare structure against
 `../../../brownfield-project/specs/001-opcua-threshold-alerting/`.
@@ -49,6 +64,14 @@ look again before moving on.
 
 Run task decomposition (`/speckit.tasks`). For at least three tasks,
 confirm out loud which requirement ID each one maps to.
+
+**Sample input**: also takes an optional argument — real example, if your team wants
+smaller, more independently-verifiable tasks than the default granularity:
+
+```
+/speckit.tasks Keep each task independently verifiable against one FR — split
+further if a task would require touching more than one FR to demonstrate done.
+```
 
 **Checkpoint**: compare against `tasks.md`. Every implementation task there cites an
 FR-###; if yours don't, ask why the task exists. Notice the "Deferred" section — one

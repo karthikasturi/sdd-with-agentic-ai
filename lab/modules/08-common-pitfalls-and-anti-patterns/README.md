@@ -56,6 +56,22 @@ afterward — a rewritten spec deserves the same clarify pass the original got. 
 compare the output your agent produces against what a first pass at this spec would
 likely have produced.
 
+**Sample input shape** for the additive case (illustrative — there's no pre-built
+"correct" rewrite to show verbatim here, on purpose, per the checkpoint below):
+original ticket text, plus what Step 2 found, concatenated:
+
+```
+/speckit.specify [paste your original SDDTR-N text unchanged] — revisit with
+hindsight from building the other half of this pair: [state specifically what
+Step 2 found, e.g. "the retention cap should probably be evaluated per-device,
+not globally, since the OOM report's Redis key count was driven by one
+particularly noisy simulated node, not aggregate volume"].
+```
+
+The em-dash split matters: your agent needs to see the *original* ask and your
+*new* finding as two distinct things, not one merged paragraph — otherwise it can't
+tell what changed from what was always there.
+
 **Checkpoint**: you're not comparing against a pre-built answer here on purpose — this
 is the Day-1-to-now arc the Capstone measures. Keep both versions; the Capstone's
 documented review trail references the difference directly.

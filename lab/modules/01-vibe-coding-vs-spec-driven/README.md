@@ -67,6 +67,51 @@ delta-based" difference `../../../SDD-Framework-Comparison_Spec-Kit-vs-OpenSpec.
 describes, now something you can see in your own two directories instead of reading
 about.
 
+**Optional, going further — what actually running one real OpenSpec change looks
+like**: this course's own hands-on stays on Spec Kit from Module 3 onward (OpenSpec is
+scaffolded here for structural comparison, not driven through the rest of the course),
+but if you want to see the other half of the comparison for real, not just its empty
+folder shape, this was actually run, not invented, using Pair 2's real assignment
+(`assignment-pool.md`) as the input:
+
+```
+/opsx-propose "Add a severity filter (MINOR/NORMAL/CRITICAL) to
+NotificationListComponent's existing category/status/label/date-range filters"
+```
+
+This drives a real CLI command under the hood (`openspec new change
+severity-filter-notifications`), which scaffolds `openspec/changes/<name>/` and asks
+for a `proposal.md` first — real output, actually produced against the real template
+`openspec instructions proposal --json` returns:
+
+```markdown
+## Why
+`NotificationListComponent` already filters by category, status, label, and date
+range, but every Notification also carries a `severity` (MINOR/NORMAL/CRITICAL) that
+has no filter of its own — staff can't narrow the list to just CRITICAL
+notifications without reading every row.
+
+## What Changes
+- Add a severity filter control (MINOR/NORMAL/CRITICAL, plus "All") to
+  `NotificationListComponent`, following the same filter pattern already used for
+  category/status/label.
+- Filter application happens client-side against the already-fetched notification
+  list, matching how the existing filters behave — no new backend query parameter.
+
+## Capabilities
+### New Capabilities
+- `notification-list-filtering`: ...
+## Impact
+- `edgex-ui-go/web/.../notification-list.component.ts` and its template only.
+```
+
+From here, `/opsx-apply severity-filter-notifications` would work through the
+remaining artifacts (a spec delta, `design.md`, `tasks.md`) and then implementation;
+`/opsx-archive severity-filter-notifications` retires a completed change into
+`openspec/specs/`. Neither was run for this course — the point of this callout is
+showing `/opsx-propose`'s real input/output shape, not building Pair 2's feature via
+OpenSpec instead of Spec Kit.
+
 ### Step 3 — Compare a basic prompt against a better one
 
 In a second scratch directory (still empty, still no spec, no constitution), feed your
