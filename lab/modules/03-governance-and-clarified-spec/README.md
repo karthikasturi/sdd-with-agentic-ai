@@ -36,6 +36,32 @@ extend rather than duplicate) — not a generic best-practices list you'd write 
 greenfield project. Use `/speckit.constitution` (see `../../tool-reference.md`) rather than hand-editing the
 template.
 
+**Sample input** (illustrative — shaped from Pair 1's real `service-map.md` findings,
+not a literal transcript; yours should read the same way but cite *your* pair's
+actual findings, not this text):
+
+```
+/speckit.constitution Our service map shows this feature extends device-opc-ua,
+which already uses the device-sdk-go/v4 framework and the gopcua/opcua client
+library — no alternative library should be introduced. It integrates with EdgeX's
+existing support-notifications service rather than a new alert store. Establish
+principles for: test-first development matching this repo's existing table-driven
+Go test style; never silently dropping, coercing, or defaulting an invalid OPC UA
+reading; every requirement traces to an approved spec ID, with scope creep treated
+as a review-blocking finding; new code MUST follow the target repo's existing
+conventions (device-sdk-go interfaces, extending support-notifications) rather than
+introducing a parallel pattern, since this is brownfield work, not greenfield;
+typed request/response models only, matching EdgeX's existing
+deviceName/resourceName/profileName field-naming conventions; and every alert
+state transition logged with actor, timestamp, and prior state.
+```
+
+Notice what makes this a *brownfield* input, not a greenfield one: it names specific
+real things Module 2 found (`device-sdk-go/v4`, `support-notifications`, EdgeX's
+field-naming convention) instead of generic principles an agent would invent with no
+codebase context at all. If your own input doesn't cite anything specific from your
+`service-map.md`, that's the same gap the Step 1 checkpoint below is looking for.
+
 **Checkpoint**: compare against
 `../../../brownfield-project/.specify/memory/constitution.md`. Don't expect to match it
 — it covers a different area — but check specifically for Principle IV (Convention
@@ -57,6 +83,33 @@ text as the argument to `/speckit.specify`, once for the feature,
 once for the defect — don't retype it from memory or summarize it down, the point is
 starting from what was actually assigned, the way a real ticket would.
 
+**Sample input — real, not illustrative**: this is Pair 1's actual `SDDTR-1`/`SDDTR-2`
+ticket text (`jira-content.md`), the real input that produced the checkpoint specs
+below. Yours will be your own pair's text from `assignment-pool.md`, but the shape —
+paste the ticket verbatim, nothing more — is exactly this:
+
+```
+/speckit.specify Evaluate subscribed OPC UA readings against per-resource
+thresholds and raise EdgeX Notifications when a reading crosses one. Staff should
+be able to see and acknowledge these from the dashboard.
+```
+
+```
+/speckit.specify Collecting data from a simulated OPC UA server via device-opc-ua
+results in an out-of-memory condition after approximately 11 hours, even with a
+retention policy configured: RETENTION_ENABLED: true, RETENTION_INTERVAL: 10s,
+RETENTION_MAXCAP: 10, RETENTION_MINCAP: 5. Redis key count exceeded 10 million
+before the crash. Debug logs show "Prepare to delete 0 readings" on every
+retention pass, despite the growing key count — possibly the retention cleanup
+isn't actually running, but I haven't confirmed that.
+```
+
+Notice the defect input is symptom-only — no root cause, no "the fix is X." That's
+real, not simplified for the course: a bug report reads like this before anyone's
+investigated it. Finding the actual root cause (a retention-interval/cap mismatch,
+not a broken cleanup routine) is what your defect spec and its clarify pass are for
+— see the checkpoint below, not this input.
+
 Draft a spec for your pair's **feature**, and a separate spec for your pair's **defect**
 — same EARS-style requirement format for both, but notice they read differently: a
 feature spec describes new desired behavior from scratch; a defect spec describes
@@ -65,6 +118,34 @@ feature spec describes new desired behavior from scratch; a defect spec describe
 equivalent section in a feature spec). Run a clarify pass (`/speckit.clarify`) on
 **both** — this is where your service-map.md's discovery
 actually gets folded in, since the raw ticket text alone won't mention it.
+
+**What running `/speckit.clarify` actually looks like**: unlike `/speckit.specify`,
+it takes no text argument — you run it bare, and your agent asks you a short series
+of numbered questions, each with lettered options, one at a time. You answer with a
+letter (or write your own if none fit). Real excerpt, Pair 1's feature spec (full
+transcript: `../../../brownfield-project/specs/001-opcua-threshold-alerting/clarify-log.md`):
+
+```
+/speckit.clarify
+
+Question 1 of 3 — Node Silence
+If a subscribed OPC UA node stops reporting new values entirely, should that
+silence itself be treated as something worth alerting on?
+
+  A) Treat prolonged silence as a MINOR-severity "node offline" Notification
+     after a configurable window
+  B) Do not alert on silence — only evaluate readings that actually arrive
+  Short) Provide a different short answer
+
+Your answer: A, with the window set to 60 minutes
+```
+
+Three real questions came out of Pair 1's feature clarify pass this way — not
+because the spec was written carelessly, but because a one-line ticket genuinely
+can't anticipate them. Expect the same for yours: if `/speckit.clarify` comes back
+with zero questions on a spec built from a paragraph-level ticket, that's usually a
+sign the spec glossed over ambiguity rather than resolved it — look again before
+treating "no questions" as a good sign.
 
 **Checkpoint**: feature half — compare structure against `spec.md` and the ambiguities
 you found against `clarify-log.md` (three real ones there: equipment/node going silent,
